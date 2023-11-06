@@ -1,0 +1,36 @@
+[
+    {
+        "id": 1,
+        "localisation": {
+            "city": "Jelenia Góra",
+            "street": "Józefa Piłsudskiego",
+            "number": "15",
+            "comment": ""
+        },
+        "status": "available",
+        "closestTerm": {
+            "time": "",
+            "date": ""
+        },
+        "standard": "CHAdeMO",
+        "power": 11, 
+        "price": 3 
+    },
+    {
+        "id": 2,
+        "localisation": {
+            "city": "Karpacz",
+            "street": "Batorego",
+            "number": "66",
+            "comment": ""
+        },
+        "status": "unavailable",
+        "closestTerm": {
+            "time": "12:00",
+            "date": "25/03/2023"
+        },
+        "standard": "CCS",
+        "power": 22,
+        "price": 4
+    }
+]
