@@ -1,3 +1,7 @@
+:root {
+    --fontColor: #153131;
+}
+
 body {
     font-family: "Lexend Deca", sans-serif;
     display: flex;
