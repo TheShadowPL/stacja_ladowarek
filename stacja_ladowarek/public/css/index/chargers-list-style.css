@@ -1,0 +1,43 @@
+.charger-list {
+    font-size: 1.2rem;
+}
+
+.charger-list .charger-localisation {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.charger-list th {
+    text-align: left;
+}
+
+.charger-list td, .charger-list th {
+    padding-right: 2em;
+    padding-bottom: 1em;
+}
+
+.charger-list .charger .charger-available::before {
+    content: "";
+    color: #01AE70;
+    font-weight: bold;
+}
+
+.charger-list .charger .charger-available {
+    color: #01AE70;
+    font-weight: bold;
+}
+
+.charger-list .charger .charger-unavailable {
+    color: #153131;
+    font-weight: bold;
+}
+
+.charger-list .charger .charger-closed {
+    color: #B20000;
+    font-weight: bold;
+}
+
+.charger-list .charger .charger-price::after {
+    content: " pln";
+}
