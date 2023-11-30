@@ -5,8 +5,12 @@
 body {
     font-family: "Lexend Deca", sans-serif;
     display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 0;
     margin: 0;
+    width: 100vw;
+    height: 100vh;
     color: var(--fontColor);
 }
 
@@ -14,7 +18,32 @@ body section {
     padding: 0 2em 0 2em;
 }
 
-.container {
+input[type="text"],
+input[type="range"],
+input[type="password"],
+select,
+button {
+    font-size: 1em;
+    border-radius: 2.5em;
+    border: none;
+    padding: 0.5em;
+    width: 19em;
+}
+
+label {
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 0.5rem 0 0.5rem 0;
+}
+
+button {
     width: 100%;
-    height: 100vh;
+    color: white;
+    font-weight: bold;
+    background: linear-gradient(180deg, #01ae70 0%, #009d65 100%);
+    transition: all 0.2s linear;
+}
+
+button:hover {
+    cursor: pointer;
 }

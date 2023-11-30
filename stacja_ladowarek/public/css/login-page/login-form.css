@@ -1,0 +1,19 @@
+:root {
+    --gray: #7f879f40;
+    --fontColor: #153131;
+    --greenGradient: linear-gradient(180deg, #01ae70 0%, #009d65 100%);
+}
+
+.container {
+    background-color: var(--gray);
+    padding: 2rem;
+    width: min-content;
+    height: min-content;
+    border-radius: 20px;
+}
+
+.container form {
+    display: flex;
+    flex-direction: column;
+    gap: .3em;
+}

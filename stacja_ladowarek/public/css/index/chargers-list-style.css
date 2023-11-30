@@ -12,19 +12,20 @@
     text-align: left;
 }
 
-.charger-list td, .charger-list th {
-    padding-right: 2em;
+.charger-list td,
+.charger-list th {
+    padding-right: 4em;
     padding-bottom: 1em;
 }
 
 .charger-list .charger .charger-available::before {
     content: "";
-    color: #01AE70;
+    color: #01ae70;
     font-weight: bold;
 }
 
 .charger-list .charger .charger-available {
-    color: #01AE70;
+    color: #01ae70;
     font-weight: bold;
 }
 
@@ -34,10 +35,19 @@
 }
 
 .charger-list .charger .charger-closed {
-    color: #B20000;
+    color: #b20000;
     font-weight: bold;
 }
 
 .charger-list .charger .charger-price::after {
     content: " pln";
+}
+
+.charger-list .charger .separator {
+    height: 2.5rem;
+    border-left: 1px solid #9e9e9e;
+    width: 1px;
+}
+
+.charger-list .charger a:hover {
 }

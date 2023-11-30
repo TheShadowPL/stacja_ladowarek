@@ -1,0 +1,26 @@
+:root {
+    --red: #9e0000;
+    --gray: #7f879f40;
+}
+
+.exclamation {
+    font-size: 5rem;
+    color: var(--red);
+}
+
+.container {
+    background-color: var(--gray);
+    padding: 2rem;
+    border-radius: 20px;
+}
+
+form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+button {
+    background: var(--red) !important;
+}
