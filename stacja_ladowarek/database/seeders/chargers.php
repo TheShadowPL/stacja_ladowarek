@@ -52,7 +52,7 @@ class chargers extends Seeder
     },
     {
         "id": 3,
-        "location": {
+        "localisation": {
             "city": "Szklarska Poręba",
             "street": "Mickiewicza",
             "number": "30",
@@ -69,7 +69,7 @@ class chargers extends Seeder
     },
     {
         "id": 4,
-        "location": {
+        "localisation": {
             "city": "Wałbrzych",
             "street": "Piastów",
             "number": "5",
@@ -86,7 +86,7 @@ class chargers extends Seeder
     },
     {
         "id": 5,
-        "location": {
+        "localisation": {
             "city": "Legnica",
             "street": "Kościuszki",
             "number": "18",
@@ -103,7 +103,7 @@ class chargers extends Seeder
     },
     {
         "id": 6,
-        "location": {
+        "localisation": {
             "city": "Głogów",
             "street": "Sienkiewicza",
             "number": "7",
@@ -120,7 +120,7 @@ class chargers extends Seeder
     },
     {
         "id": 7,
-        "location": {
+        "localisation": {
             "city": "Zgorzelec",
             "street": "Zamkowa",
             "number": "42",
@@ -137,7 +137,7 @@ class chargers extends Seeder
     },
     {
         "id": 8,
-        "location": {
+        "localisation": {
             "city": "Jawor",
             "street": "Słowackiego",
             "number": "3",
@@ -154,7 +154,7 @@ class chargers extends Seeder
     },
     {
         "id": 9,
-        "location": {
+        "localisation": {
             "city": "Świdnica",
             "street": "Piłsudskiego",
             "number": "10",
@@ -171,7 +171,7 @@ class chargers extends Seeder
     },
     {
         "id": 10,
-        "location": {
+        "localisation": {
             "city": "Lubań",
             "street": "Kopernika",
             "number": "22",
@@ -188,7 +188,7 @@ class chargers extends Seeder
     },
     {
         "id": 11,
-        "location": {
+        "localisation": {
             "city": "Góra",
             "street": "Polna",
             "number": "9",
@@ -205,7 +205,7 @@ class chargers extends Seeder
     },
     {
         "id": 12,
-        "location": {
+        "localisation": {
             "city": "Oleśnica",
             "street": "Wrocławska",
             "number": "17",
@@ -222,7 +222,7 @@ class chargers extends Seeder
     },
     {
         "id": 13,
-        "location": {
+        "localisation": {
             "city": "Wrocław",
             "street": "Nowy Świat",
             "number": "7",

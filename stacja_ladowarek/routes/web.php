@@ -1,6 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Request;
+use App\Http\Controllers\Sub_domainsController;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +19,28 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('main');
+
+Route::get('', [Sub_domainsController::class, 'index'])->name('home');
+Route::get('index', [Sub_domainsController::class, 'index'])->name('home');
+Route::get('chargers', [Sub_domainsController::class, 'chargers'])->name('chargers');
+Route::get('/reservation/{charger_id}',[Sub_domainsController::class, 'reservation'])->name('reservation');
+Route::get('malfunction', [Sub_domainsController::class, 'malfunction'])->name('malfunction');
+
+
+Route::get('/about', function () {
+    return view('about');
 });
+Route::get('/zaloguj', function () {
+    return view('zaloguj');
+});
+
+Route::get('/rejestracja', function () {
+    return view('register');
+});
+
+Route::post('register', [authcontroller::class, 'register']) -> name('register');
+Route::post('login', [authcontroller::class, 'login']) -> name('login');
+Route::post('logout', [authcontroller::class, 'logout']) -> name('logout');
+
+
+

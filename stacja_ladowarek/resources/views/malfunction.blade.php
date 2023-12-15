@@ -3,16 +3,9 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link
-            rel="stylesheet"
-            type="text/css"
-            href="../../public/css/global-style.css"
-        />
-        <link
-            rel="stylesheet"
-            type="text/css"
-            href="../../public/css/malfunction-page/malfunction-page.css"
-        />
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/global-form.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/malfunction-page/malfunction-page.css') }}">
+
         <title>Zgłoś awarie</title>
     </head>
     <body>
