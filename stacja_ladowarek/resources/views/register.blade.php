@@ -22,16 +22,24 @@
                     const email = $("#register-email").val();
                     const pass = $("#pass1").val();
                     const passCheck = $("#pass2").val();
+                    const firstName = $("#register-first-name").val();
+                    const lastName = $("#register-last-name").val();
+                    //const dob = $("#register-dob").val();
+                    const phone = $("#register-phone").val();
 
                     console.log(username);
                     console.log(email);
                     console.log(pass);
                     console.log(passCheck);
+                    console.log(firstName);
+                    console.log(lastName);
+                    //console.log(dob);
+                    console.log(phone);
 
                     $.ajax({
                         type: "POST",
                         url: "{{ route('register') }}",
-                        data: { username: username, email: email, pass: pass, passCheck: passCheck },
+                        data: { username: username, email: email, pass: pass, passCheck: passCheck, firstName: firstName, lastName: lastName,phone: phone },
                         success: function(response) {
                             console.log(response);
                             if (response.status.trim().toLowerCase() === "success-reg")
@@ -58,6 +66,17 @@
                 <br>
                 <label for="email">Twój email</label>
                 <input type="text" name="email" id="register-email" />
+                <br>
+                <label for="login">Imie</label>
+                <input type="text" name="first-name" id="register-first-name" />
+                <br>
+                <label for="login">Nazwisko</label>
+                <input type="text" name="last-name" id="register-last-name" />
+                <br>
+                <label for="login">Data Urodzenia</label>
+                <br>
+                <label for="login">Numer Telefonu</label>
+                <input type="text" name="phone" id="register-phone" />
                 <br>
                 <label for="password1">Hasło</label>
                 <input type="password" name="password1" id="pass1">

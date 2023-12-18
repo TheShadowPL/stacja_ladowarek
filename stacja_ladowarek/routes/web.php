@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Request;
 use App\Http\Controllers\Sub_domainsController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ChargingHistoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +37,10 @@ Route::get('/zaloguj', function () {
 
 Route::get('/rejestracja', function () {
     return view('register');
+});
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('user/charging-history', [ChargingHistoryController::class, 'index'])->name('users_panel.charge_history');
 });
 
 Route::post('register', [authcontroller::class, 'register']) -> name('register');

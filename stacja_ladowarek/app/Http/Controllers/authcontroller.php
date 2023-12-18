@@ -26,6 +26,7 @@ class authcontroller extends Controller
             if (Hash::check($pass, $user->password)) {
                 session()->put('username', $user->username);
                 session()->put('userid', $user->id);
+                session()->put('permission', $user->permission);
 
                 return response()->json(['status' => 'success-log', 'message' => 'Zalogowano pomyślnie']);
             } else
@@ -43,9 +44,16 @@ class authcontroller extends Controller
             $email = $request->input('email');
             $pass = $request->input('pass');
             $passCheck = $request->input('passCheck');
+            $firstName = $request->input('firstName');
+            $lastName = $request->input('lastName');
+            $dob = $request->input('dob');
 
             if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
                 return response()->json(['status' => 'error-reg', 'message' => 'Nieprawidłowy adres email']);
+            }
+
+            if ($firstName == '' || $lastName == '' ) { //|| $dob == ''
+                return response()->json(['status' => 'error-reg', 'message' => 'Wypełnij wszystkie pola']);
             }
 
             if ($passCheck != $pass) {
