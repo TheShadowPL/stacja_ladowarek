@@ -12,34 +12,28 @@ class Sub_domainsController extends Controller
 {
     public function index()
     {
+        $user = null;
+
         if (session()->has('username')) {
             $uname = session('username');
             $user = DB::table('users')->where('username', $uname)->first();
-
-            if(!$user)
-                return view('index');
-
-            return view('index', ['user' => $user]);
         }
 
-        return view('index');
+        return view('index', ['user' => $user]);
     }
 
     public function chargers()
     {
+        $user = null;
+        $chargers = [];
+
         if (session()->has('username')) {
             $uname = session('username');
             $user = DB::table('users')->where('username', $uname)->first();
             $chargers = DB::table('ladowarki')->get();
-
-            if(!$user)
-                return view('index');
-
-            return view('ladowarki1', ['user' => $user, 'chargers' => $chargers]);
         }
 
-
-        return view('index');
+        return view('ladowarki1', ['user' => $user, 'chargers' => $chargers]);
     }
 
     public function malfunction()
@@ -51,16 +45,13 @@ class Sub_domainsController extends Controller
 
     public function profile()
     {
+        $user = null;
+
         if (session()->has('username')) {
             $uname = session('username');
             $user = DB::table('users')->where('username', $uname)->first();
-
-            if (!$user)
-                return view('home');
-
-            return view('profile', ['user' => $user]);
         }
 
-        return view('home');
+        return view('profile', ['user' => $user]);
     }
 }

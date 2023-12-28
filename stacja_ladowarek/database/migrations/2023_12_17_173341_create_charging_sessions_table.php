@@ -12,12 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('charging_sessions', function (Blueprint $table) {
-            $table->user_id();
-            $table->start_time();
-            $table->end_time();
-            $table->energy_charged();
-            $table->cost();
-            $table->status();
+            $table->id();
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->dateTime('start_time');
+            $table->dateTime('end_time');
+            $table->decimal('energy_charged', 8, 2);
+            $table->decimal('cost', 8, 2);
+            $table->string('status');
+            $table->timestamps();
         });
     }
 

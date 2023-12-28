@@ -31,6 +31,7 @@ class User extends Authenticatable
         'username',
         'email',
         'pass',
+        'permission',
     ];
 
     protected $table = 'users';
