@@ -4,10 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="{{ asset('css/global-style.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/register-page/register-form.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/login-page/login-form.css') }}">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <meta name="csrf-token" content="{{ csrf_token() }}" />
-    <title>Rejestruj</title>
+    <title>Zaloguj się</title>
     <script type="text/javascript">
         $.ajaxSetup({
             headers: {
@@ -46,8 +46,8 @@
 
     <form id="login-form" method="post">
         <input type="hidden" name="_token" value="{{ csrf_token() }}" />
-        <h1>Zarejestruj się</h1>
-        <label for="login">login</label>
+        <h1>Zaloguj się</h1>
+        <label for="login">Login</label>
         <input type="text" name="login" id="login-username" />
         <br>
         <label for="password1">Hasło</label>
