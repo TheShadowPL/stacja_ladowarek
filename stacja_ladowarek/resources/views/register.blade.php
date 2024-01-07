@@ -16,6 +16,10 @@
             }
         });
         $(document).ready(function() {
+            $('#next').on("click", function() {
+                $('#page1').hide()
+                $('#page2').show()
+            })
             $("#register-form").submit(function(e) {
                 e.preventDefault();
 
@@ -71,23 +75,30 @@
             <input type="hidden" name="_token" value="{{ csrf_token() }}" />
             <h1>Zarejestruj się</h1>
             <br>
-            <label for="login">Twój login</label>
-            <input type="text" name="login" id="register-username" />
-            <label for="email">Twój email</label>
-            <input type="text" name="email" id="register-email" />
-            <label for="first-name">Imie</label>
-            <input type="text" name="first-name" id="register-first-name" />
-            <label for="last-name">Nazwisko</label>
-            <input type="text" name="last-name" id="register-last-name" />
-            <label for="login">Data Urodzenia</label>
-            <br>
-            <label for="phone">Numer Telefonu</label>
-            <input type="text" name="phone" id="register-phone" />
-            <label for="password1">Hasło</label>
-            <input type="password" name="password1" id="pass1">
-            <label for="password2">Powtórz hasło</label>
-            <input type="password" name="password2" id="pass2">
-            <button>Zarejestruj</button>
+            <section id="page1">
+                <label for="login">Twój login</label>
+                <input type="text" name="login" id="register-username" />
+                <label for="email">Twój email</label>
+                <input type="text" name="email" id="register-email" />
+                <label for="password1">Hasło</label>
+                <input type="password" name="password1" id="pass1">
+                <label for="password2">Powtórz hasło</label>
+                <input type="password" name="password2" id="pass2">
+                <br>
+                <div id="next">Dalej</div>
+            </section>
+            <section id="page2" style="display: none;">
+                <label for="first-name">Imie</label>
+                <input type="text" name="first-name" id="register-first-name" />
+                <label for="last-name">Nazwisko</label>
+                <input type="text" name="last-name" id="register-last-name" />
+                <label for="login">Data Urodzenia</label>
+                <input type="date" name="birth-date" id "birth-date" />
+                <label for="phone">Numer Telefonu</label>
+                <input type="text" name="phone" id="register-phone" />
+                <br>
+                <button>Zarejestruj</button>
+            </section>
         </form>
     </div>
     <!--<script src="{{ asset('assets/js/validatePassword.js') }} " type="text/javascript"></script>-->

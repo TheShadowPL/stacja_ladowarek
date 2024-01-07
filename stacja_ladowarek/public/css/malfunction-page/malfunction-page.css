@@ -11,7 +11,6 @@
 .container {
     background-color: var(--gray);
     padding: 2rem;
-    border-radius: 20px;
 }
 
 form {

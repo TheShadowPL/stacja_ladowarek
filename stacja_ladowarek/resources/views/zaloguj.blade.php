@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -27,7 +28,10 @@
                 $.ajax({
                     type: "POST",
                     url: "{{ route('login') }}",
-                    data: { username: username, pass: pass },
+                    data: {
+                        username: username,
+                        pass: pass
+                    },
                     success: function(response) {
                         console.log(response);
                         if (response.status.trim().toLowerCase() === "success-log")
@@ -40,21 +44,23 @@
         });
     </script>
 </head>
+
 <body>
 
-<div class="container">
+    <div class="container">
 
-    <form id="login-form" method="post">
-        <input type="hidden" name="_token" value="{{ csrf_token() }}" />
-        <h1>Zaloguj się</h1>
-        <label for="login">Login</label>
-        <input type="text" name="login" id="login-username" />
-        <br>
-        <label for="password1">Hasło</label>
-        <input type="password" name="password1" id="pass1">
-        <br>
-        <button>Zaloguj</button>
-    </form>
-</div>
+        <form id="login-form" method="post">
+            <h1>Zaloguj się</h1>
+            <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+            <label for="login">Login</label>
+            <input type="text" name="login" id="login-username" />
+            <br>
+            <label for="password1">Hasło</label>
+            <input type="password" name="password1" id="pass1">
+            <br>
+            <button>Zaloguj</button>
+        </form>
+    </div>
 </body>
+
 </html>

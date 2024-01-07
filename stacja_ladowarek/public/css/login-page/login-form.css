@@ -7,13 +7,14 @@
 }
 
 .container {
-    background-color: white;
+    background: white;
     padding: 2rem;
-    width: min-content;
-    height: min-content;
+    box-shadow: 5px 5px 10px var(--gray);
 }
 
 .container form {
+    width: min-content;
+    height: min-content;
     display: flex;
     flex-direction: column;
     gap: 0.3em;

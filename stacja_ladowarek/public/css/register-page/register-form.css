@@ -2,22 +2,56 @@
     --gray: #7f879f40;
     --fontColor: #153131;
     --greenGradient: linear-gradient(180deg, #01ae70 0%, #009d65 100%);
+    background: url(../../img/background.png);
+    background-size: cover;
 }
 
 .container {
-    background-color: var(--gray);
+    background-color: white;
     padding: 2rem;
     width: min-content;
     height: min-content;
-    border-radius: 20px;
 }
 
 .container form {
     display: flex;
-    flex-direction: column;
-    gap: .3em;
+    flex-wrap: wrap;
+    gap: 0.5em;
 }
 
-.errors-container {
-    color: red;
+.container input {
+    border-bottom: 1px solid var(--gray);
+    transition: border-bottom 0.5s linear;
+}
+
+.container input:focus {
+    outline: none;
+    border-bottom: 1px solid #01ae70;
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3em;
+}
+
+#next {
+    width: 100%;
+    color: white;
+    font-weight: bold;
+    padding: 0.5em;
+    text-align: center;
+    background: linear-gradient(180deg, #01ae70 0%, #009d65 100%);
+    transition: all 0.2s linear;
+}
+
+#next:hover {
+    cursor: pointer;
+}
+
+input[type="date"] {
+    border: none;
+    font-family: "Lexend Deca", sans-serif;
+    font-size: 1.2em;
+    border-bottom: 1px solid var(--gray);
 }
