@@ -2,18 +2,30 @@
     --gray: #7f879f40;
     --fontColor: #153131;
     --greenGradient: linear-gradient(180deg, #01ae70 0%, #009d65 100%);
+    background: url(../../img/background.png);
+    background-size: cover;
 }
 
 .container {
-    background-color: var(--gray);
+    background: white;
     padding: 2rem;
-    width: min-content;
-    height: min-content;
-    border-radius: 20px;
+    box-shadow: 5px 5px 10px var(--gray);
 }
 
 .container form {
+    width: min-content;
+    height: min-content;
     display: flex;
     flex-direction: column;
-    gap: .3em;
+    gap: 0.3em;
+}
+
+.container input {
+    border-bottom: 1px solid var(--gray);
+    transition: border-bottom 0.5s linear;
+}
+
+.container input:focus {
+    outline: none;
+    border-bottom: 1px solid #01ae70;
 }

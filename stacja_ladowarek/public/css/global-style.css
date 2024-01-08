@@ -26,7 +26,6 @@ input[type="submit"],
 select,
 button {
     font-size: 1em;
-    border-radius: 2.5em;
     border: none;
     padding: 0.5em;
     width: 19em;
