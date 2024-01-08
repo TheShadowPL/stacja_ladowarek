@@ -82,13 +82,13 @@
             <h1>Ładowarki</h1>
         </div>
         <table class="charger-list">
-            <tr class="table-header">
+            <thead class="table-header">
                 <th>Dostępność</th>
                 <th>Lokalizacja</th>
                 <th>Cena [kWh]</th>
                 <th>Wolny termin</th>
                 <th>Zarezerwuj</th>
-            </tr>
+            </thead>
             @foreach ($chargers as $charger)
             @if ($charger->status == 'available')
             @php $charger->distance = 0.0; @endphp
@@ -112,7 +112,7 @@
                     @if ($charger->closestTerm_date && $charger->closestTerm_time)
                     {{ $charger->closestTerm_date }} {{ $charger->closestTerm_time }}
                     @else
-                    Brak dostępnych terminów
+                    <b>Teraz</b>
                     @endif
                 </td>
                 <td>

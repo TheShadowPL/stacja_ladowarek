@@ -10,7 +10,7 @@ class CheckUser
 {
     public function handle($request, Closure $next)
     {
-        if (auth()->check() && auth()->user()->permission === 'user') {
+        if (auth()->check() && auth()->user()->permission === 'user' or auth()->user()->permission === 'worker') {
             return $next($request);
         }
 
