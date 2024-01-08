@@ -12,10 +12,7 @@ body {
     width: 100vw;
     height: 100vh;
     color: var(--fontColor);
-}
-
-body section {
-    padding: 0 2em 0 2em;
+    overflow-x: hidden;
 }
 
 input[type="text"],

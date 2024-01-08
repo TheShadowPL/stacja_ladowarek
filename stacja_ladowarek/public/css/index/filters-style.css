@@ -4,11 +4,6 @@
     --greenGradient: linear-gradient(180deg, #01ae70 0%, #009d65 100%);
 }
 
-.container {
-    width: 100%;
-    height: 100vh;
-}
-
 .filters {
     width: 20em;
     height: 100vh;
@@ -17,6 +12,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+    padding: 2em;
 }
 
 .input {
@@ -56,7 +52,6 @@
 .input input[type="range"],
 .input .filter-butt button {
     font-size: 1em;
-    border-radius: 2.5em;
     border: none;
     padding: 0.5em;
     width: 19em;
