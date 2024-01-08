@@ -19,7 +19,7 @@ class Sub_domainsController extends Controller
             $user = DB::table('users')->where('username', $uname)->first();
         }
 
-        return view('index', ['user' => $user]);
+        return view('users_panel.index', ['user' => $user]);
     }
 
     public function chargers()
@@ -33,12 +33,12 @@ class Sub_domainsController extends Controller
             $chargers = DB::table('ladowarki')->get();
         }
 
-        return view('ladowarki1', ['user' => $user, 'chargers' => $chargers]);
+        return view('users_panel.ladowarki1', ['user' => $user, 'chargers' => $chargers]);
     }
 
     public function malfunction()
     {
-        return view('malfunction');
+        return view('users_panel.malfunction');
     }
 
 
@@ -52,6 +52,12 @@ class Sub_domainsController extends Controller
             $user = DB::table('users')->where('username', $uname)->first();
         }
 
-        return view('profile', ['user' => $user]);
+        return view('users_panel.profile', ['user' => $user]);
+    }
+
+    public function reservation($id)
+    {
+
+
     }
 }

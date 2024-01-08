@@ -63,30 +63,7 @@
             width: 100%;
         }
     </style>
-    <script type="text/javascript">
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-        $(document).ready(function() {
-            $("#logout-link").click(function(e) {
-                e.preventDefault();
 
-                $.ajax({
-                    type: "POST",
-                    url: "{{ route('logout') }}",
-                    success: function(response) {
-                        console.log(response);
-                        if (response.status.trim().toLowerCase() === "success-logout")
-                            window.location.href = "{{ route('home') }}";
-                        else
-                            alert("Błąd wylogowania");
-                    }
-                });
-            });
-        });
-    </script>
 </head>
 <body>
 
@@ -99,10 +76,10 @@
     <h2>Ładowarki Dla Twoich Potrzeb</h2>
     <p>Dostarczamy nowoczesne i efektywne rozwiązania ładowania dla pojazdów elektrycznych. Znajdź najbliższą stację ładowania już teraz!</p>
     <a href="{{ __('about') }}" class="cta-button">Skontaktuj się z nami</a>
-    <a href="{{ __('chargers') }}" class="cta-button">Znajdź stację ładowania</a>
-    <a href="{{ __('zaloguj') }}" class="cta-button">Zaloguj się</a>
-    <a href="{{ __('rejestracja') }}" class="cta-button">Zarejestruj się</a>
-    @if (session('userid'))
+    <a href="{{ __('users_panel/chargers') }}" class="cta-button">Znajdź stację ładowania</a>
+    <a href="{{ __('login') }}" class="cta-button">Zaloguj się</a>
+    <a href="{{ __('register') }}" class="cta-button">Zarejestruj się</a>
+    @if (auth()->check())
         <form action="{{ route('logout') }}" method="post">
             @csrf
             <button type="submit" id="logout-button" class="cta-button">Wyloguj się</button>

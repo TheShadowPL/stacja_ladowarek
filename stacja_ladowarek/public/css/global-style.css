@@ -21,6 +21,8 @@ body section {
 input[type="text"],
 input[type="range"],
 input[type="password"],
+input[type="email"],
+input[type="submit"],
 select,
 button {
     font-size: 1em;
