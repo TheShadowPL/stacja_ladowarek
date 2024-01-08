@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
+use App\Models\User;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class Sub_domainsController extends Controller
 {
@@ -55,9 +59,26 @@ class Sub_domainsController extends Controller
         return view('users_panel.profile', ['user' => $user]);
     }
 
-    public function reservation($id)
+    public function reservation($charger_id)
     {
+        $charger = DB::table('ladowarki')->find($charger_id);
+
+        if (!$charger) {
+            abort(404);
+        }
 
 
+        return view('users_panel.reservations', ['charger' => $charger]);
+
+    }
+
+    public function storeReservation(Request $request, $charger_id)
+    {
+        $request->validate([
+            'date' => 'required|date',
+            'time' => 'required|date_format:H:i',
+        ]);
+
+        return redirect()->route('index')->with('success', 'Rezerwacja zakończona pomyślnie!');
     }
 }

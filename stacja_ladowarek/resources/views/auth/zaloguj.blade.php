@@ -11,6 +11,8 @@
 </head>
 <body>
 
+<x-navbar />
+
 <div class="container">
     <form action="{{ route('authenticate') }}" method="post">
         @csrf

@@ -1,8 +1,64 @@
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stacja Ładowarek - Twoje Źródło Energii</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<style>
+    body {
+        margin: 0;
+        font-family: 'Arial', sans-serif;
+        background-color: #f4f4f4;
+        color: #333;
+    }
 
+    .x-navbar {
+        background-color: #007bff;
+        padding: 1rem;
+    }
 
-//@extends('layouts.app')
+    .x-navbar a {
+        color: #fff;
+        text-decoration: none;
+        margin-right: 20px;
+    }
 
-@section('content')
+    h1 {
+        text-align: center;
+        color: #007bff;
+    }
+
+    p {
+        text-align: center;
+        margin: 20px 0;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    thead {
+        background-color: #007bff;
+        color: #fff;
+    }
+
+    th, td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    tbody tr:hover {
+        background-color: #f9f9f9;
+    }
+</style>
+
+</head>
+<body>
+    <x-navbar/>
     <h1>Historia ładowań</h1>
 
     @if($chargingSessions->isEmpty())
@@ -31,4 +87,5 @@
             </tbody>
         </table>
     @endif
-@endsection
+</body>
+</html>

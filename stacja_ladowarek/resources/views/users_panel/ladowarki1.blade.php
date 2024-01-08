@@ -14,7 +14,10 @@
     <title>Charger</title>
 </head>
 
+
+
 <body>
+<x-navbar />
     <section class="filters">
         <form>
             <div class="title">

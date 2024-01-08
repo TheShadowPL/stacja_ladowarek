@@ -44,6 +44,7 @@ Route::middleware(['auth', 'user'])->prefix('users_panel')->group(function () {
     Route::get('/charging-history', [ChargingHistoryController::class, 'index'])->name('charge_history');
     Route::get('/chargers', [Sub_domainsController::class, 'chargers'])->name('chargers');
     Route::get('/reservation/{charger_id}', [Sub_domainsController::class, 'reservation'])->name('reservation');
+    Route::post('/reservation/{charger_id}', [Sub_domainsController::class, 'storeReservation'])->name('reservation.store');
     Route::get('/malfunction', [Sub_domainsController::class, 'malfunction'])->name('malfunction');
 });
 

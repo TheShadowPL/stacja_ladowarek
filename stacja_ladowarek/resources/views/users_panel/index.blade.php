@@ -67,10 +67,14 @@
 </head>
 <body>
 
+<x-navbar />
+
 <header>
     <h3>Stacja Ładowarek</h3>
     <p1>Ładowanie Przyszłości</p1>
 </header>
+
+
 
 <section class="container">
     <h2>Ładowarki Dla Twoich Potrzeb</h2>

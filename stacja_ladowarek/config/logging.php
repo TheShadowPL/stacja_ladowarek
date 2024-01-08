@@ -36,6 +36,8 @@ return [
         'trace' => false,
     ],
 
+
+
     /*
     |--------------------------------------------------------------------------
     | Log Channels
@@ -54,8 +56,12 @@ return [
     'channels' => [
         'stack' => [
             'driver' => 'stack',
-            'channels' => ['single'],
+            'channels' => ['daily', 'flare'],
             'ignore_exceptions' => false,
+        ],
+
+        'flare' => [
+            'driver' => 'flare',
         ],
 
         'single' => [

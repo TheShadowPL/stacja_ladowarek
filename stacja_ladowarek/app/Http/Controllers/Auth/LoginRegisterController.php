@@ -76,11 +76,11 @@ class LoginRegisterController extends Controller
             session(['username' => Auth::user()->username]);
             $request->session()->regenerate();
             return redirect()->route('chargers')
-                ->withSuccess('You have successfully logged in!');
+                ->withSuccess('Pomyślnie Zalogowano!');
         }
 
         return back()->withErrors([
-            'email' => 'Your provided credentials do not match in our records.',
+            'email' => 'Nie prawidlowe dane logowania.',
         ])->onlyInput('email');
 
     }
@@ -90,7 +90,7 @@ class LoginRegisterController extends Controller
     {
         if(Auth::check())
         {
-            return view('auth.dashboard');
+            return view('chargers');
         }
 
         return redirect()->route('login')
