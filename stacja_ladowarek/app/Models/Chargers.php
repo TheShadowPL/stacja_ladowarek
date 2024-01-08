@@ -7,8 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 
 
-class Charger extends Model
+class Chargers extends Model
+
 {
+    protected $table = 'ladowarki';
     protected $fillable = [
         'city', 'street', 'number', 'comment', 'status', 'closestTerm_time', 'closestTerm_date',
         'standard', 'power', 'price'

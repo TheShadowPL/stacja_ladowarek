@@ -4,25 +4,25 @@ namespace App\Http\Controllers\workers_panel;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Charger;
+use App\Models\Chargers;
 
 class ChargerController extends Controller
 {
     public function index()
     {
-        $chargers = Charger::all();
+        $chargers = Chargers::all();
         return view('workers_panel.charger.index', compact('chargers'));
     }
 
     public function edit($id)
     {
-        $charger = Charger::findOrFail($id);
+        $charger = Chargers::findOrFail($id);
         return view('workers_panel.charger.edit', compact('charger'));
     }
 
     public function update(Request $request, $id)
     {
-        $charger = Charger::findOrFail($id);
+        $charger = Chargers::findOrFail($id);
         $charger->update($request->all());
 
 
@@ -37,7 +37,7 @@ class ChargerController extends Controller
 
     public function store(Request $request)
     {
-        $charger = Charger::create($request->all());
+        $charger = Chargers::create($request->all());
 
 
         return redirect()->route('chargers.create')->with('success', 'Ładowarka dodana pomyślnie!');

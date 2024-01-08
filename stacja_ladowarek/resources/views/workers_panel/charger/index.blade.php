@@ -6,7 +6,7 @@
     <title>Lista Ładowarek</title>
 </head>
 <body>
-
+<x-navbar />
     <h2>Lista Ładowarek</h2>
 
     <table>

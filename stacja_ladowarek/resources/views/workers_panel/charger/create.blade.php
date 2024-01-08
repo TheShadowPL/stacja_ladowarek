@@ -6,6 +6,7 @@
     <title>Dodaj Nową Ładowarkę</title>
 </head>
 <body>
+<x-navbar />
 
     <h2>Dodaj Nową Ładowarkę</h2>
 
