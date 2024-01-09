@@ -19,7 +19,7 @@
             <select type="" name="login" id="">
                 <option value="">Szklarska Poręba ul. Mickiewicza 30</option>
                 <option value="">Karpacz ul. Batorego 66</option>
-                <option value=""><b>Jelenia góra ul. Józefa Piłsudskiego 15</option>
+                <option value=""><b>Jelenia góra ul. Józefa Piłsudskiego 15</b></option>
             </select>
             <br />
             &nbsp
