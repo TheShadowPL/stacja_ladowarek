@@ -74,11 +74,43 @@ class Sub_domainsController extends Controller
 
     public function storeReservation(Request $request, $charger_id)
     {
+
         $request->validate([
-            'date' => 'required|date',
-            'time' => 'required|date_format:H:i',
+            'start_time' => 'required|date_format:H:i',
+            'end_time' => 'required|date_format:H:i',
         ]);
 
-        return redirect()->route('index')->with('success', 'Rezerwacja zakończona pomyślnie!');
+        $uname = session('username');
+        $user = DB::table('users')->where('username', $uname)->first();
+        $charger = DB::table('ladowarki')->find($charger_id);
+
+        DB::table('reservations')->insert([
+            'charger_id' => $charger_id,
+            'user_id' => $uname,
+            'start_time' => $request->start_time,
+            'end_time' => $request->end_time,
+        ]);
+
+        DB::table('ladowarki')->where('id', $charger_id)->update([
+            'status' => 'unavailable',
+            'closestTerm_date' => $request->end_time,
+        ]);
+
+        DB::table('charging_sessions')->insert([
+            'user_id' => $user->id,
+            'charger_id' => $charger_id,
+            'start_time' => $request->start_time,
+            'end_time' => $request->end_time,
+            'energy_charged' => 0,
+            'cost' => 0,
+            'status' => 'reserved',
+            'created_at' => now(),
+        ]);
+
+
+        return redirect()->route('index')
+            ->withSuccess('Rezerwacja zakończona pomyślnie!');
+
+        //return redirect()->route('index')->with('success', 'Rezerwacja zakończona pomyślnie!');
     }
 }

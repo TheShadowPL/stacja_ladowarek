@@ -4,8 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="{{ asset('css/global-form.css') }}">
-
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <title>Wynajmij</title>
+
 </head>
 <body>
 <x-navbar />
