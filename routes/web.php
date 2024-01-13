@@ -52,7 +52,12 @@ Route::middleware(['auth', 'user'])->prefix('users_panel')->group(function () {
 Route::middleware(['auth', 'worker'])->prefix('workers_panel')->group(function () {
     Route::get('/chargers/create', [ChargerController::class, 'create'])->name('chargers.create');
     Route::post('/chargers/store', [ChargerController::class, 'store'])->name('chargers.store');
-    Route::get('/chargers', [ChargerController::class, 'index'])->name('chargers.index');
+    Route::get('/chargers/index', [ChargerController::class, 'index'])->name('chargers.index');
+    Route::get('/index', [ChargerController::class, 'worker_page'])->name('workers.index');
+    Route::get('/', [ChargerController::class, 'worker_page']);
+    Route::get('/malfunction_list', [ChargerController::class, 'mallfunction_list'])->name('malfunction_list');
+    Route::get('/reservation_list', [ChargerController::class, 'reservations_list'])->name('reservation_list');
     Route::get('/chargers/edit/{id}', [ChargerController::class, 'edit'])->name('chargers.edit');
     Route::put('/chargers/update/{id}', [ChargerController::class, 'update'])->name('chargers.update');
+
 });
