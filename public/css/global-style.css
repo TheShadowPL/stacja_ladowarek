@@ -12,9 +12,25 @@ body {
     width: 100vw;
     height: 100vh;
     color: var(--fontColor);
-    overflow-x: hidden;
+    overflow: hidden;
+    padding-top: 3em;
 }
 
+::-webkit-scrollbar-track {
+    background: white;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #01ae70;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #01ae70;
+}
+
+.attention {
+    color: #01ae70;
+}
 input[type="text"],
 input[type="range"],
 input[type="password"],
@@ -25,7 +41,6 @@ button {
     font-size: 1em;
     border: none;
     padding: 0.5em;
-    width: 19em;
 }
 
 label {

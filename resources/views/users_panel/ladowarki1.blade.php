@@ -5,8 +5,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="{{ asset('css/global-style.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/index/chargers-list-style.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/index/filters-style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/chargers-page/chargers-list-style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/chargers-page/filters-style.css') }}">
 
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300;500;700&display=swap");
@@ -14,10 +14,8 @@
     <title>Charger</title>
 </head>
 
-
-
 <body>
-<x-navbar />
+    <x-navbar />
     <section class="filters">
         <form>
             <div class="title">

@@ -4,6 +4,7 @@
     --greenGradient: linear-gradient(180deg, #01ae70 0%, #009d65 100%);
     background: url(../../img/background.png);
     background-size: cover;
+    background-position: center;
 }
 
 .container {
@@ -20,9 +21,18 @@
     gap: 0.3em;
 }
 
+.container input[type="submit"] {
+    width: 100%;
+    color: white;
+    font-weight: bold;
+    background: var(--greenGradient);
+    transition: all 0.2s linear;
+}
+
 .container input {
     border-bottom: 1px solid var(--gray);
     transition: border-bottom 0.5s linear;
+    width: 19em;
 }
 
 .container input:focus {

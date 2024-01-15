@@ -1,0 +1,45 @@
+.container {
+    display: flex;
+}
+
+h1 {
+    font-size: 4em;
+}
+
+.left-container {
+    width: 40vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 6em;
+    padding-top: 0em;
+    box-sizing: border-box;
+    box-shadow: 0 0 5em #000000aa;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.5em;
+}
+
+p {
+    font-size: 1.2em;
+}
+
+.right-container {
+    width: 60vw;
+    height: 100vh;
+    background: url(../../img/background.png);
+    background-size: cover;
+    background-position: center;
+}
+
+input[type="datetime-local"] {
+    color: #01ae70;
+    border: none;
+    font-family: "Lexend Deca", sans-serif;
+    font-size: 1.2em;
+    border-bottom: 1px solid var(--gray);
+}

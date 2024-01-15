@@ -1,0 +1,40 @@
+:root {
+    --greenGradient: linear-gradient(180deg, #01ae70 0%, #009d65 100%);
+}
+
+.container {
+    max-width: 1300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5em;
+}
+
+.left-side {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.right-side {
+    width: 50%;
+}
+
+h2 {
+    font-size: 4em;
+}
+
+p {
+    font-size: 2em;
+}
+
+.cta-button {
+    color: white;
+    font-weight: bold;
+    background: linear-gradient(180deg, #01ae70 0%, #009d65 100%);
+    transition: all 0.2s linear;
+    text-decoration: none;
+    padding: 1em;
+}

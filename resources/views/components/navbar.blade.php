@@ -1,22 +1,28 @@
 <style>
-
     .navbar {
-        background-color: #f8f9fa;
-        padding: 1rem 0;
+        background-color: white;
+        position: fixed;
+        top: 0;
+        width: 100vw;
+        height: 3em;
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
     }
 
     .nav-container {
-        max-width: 1200px;
-        margin: 0 auto;
         display: flex;
-        justify-content: space-between;
+        justify-content: space-around;
         align-items: center;
+        padding: 1em;
     }
 
     .navbar-brand {
-        font-size: 1.5rem;
         text-decoration: none;
-        color: #007bff;
+        color: #153131;
+        font-weight: bold;
+    }
+
+    .attention {
+        color: #01ae70;
     }
 
     .navbar-nav {
@@ -25,20 +31,21 @@
         align-items: center;
         margin: 0;
         padding: 0;
+        gap: 1.5em
     }
 
-    .nav-item {
-        margin-right: 1rem;
+    .nav-item a {
+        margin-right: 1em;
     }
 
     .nav-link {
         text-decoration: none;
-        color: #343a40;
+        color: #153131;
         font-weight: bold;
     }
 
     .nav-link:hover {
-        color: #007bff;
+        color: linear-gradient(180deg, #01ae70 0%, #009d65 100%);
     }
 
     .navbar-nav li {
@@ -59,14 +66,15 @@
         top: 100%;
         left: 0;
         z-index: 1000;
-        min-width: 160px;
         box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+        background: white;
     }
 
     .dropdown-item {
         display: block;
         width: 100%;
         padding: 0.5rem 1rem;
+        box-sizing: border-box;
         clear: both;
         font-weight: 400;
         color: #212529;
@@ -77,13 +85,13 @@
     }
 
     .dropdown-item:hover {
-        background-color: #007bff;
+        background: linear-gradient(180deg, #01ae70 0%, #009d65 100%);
         color: #fff;
     }
 
     .dropdown-menu a {
         text-decoration: none;
-        color: #212529;
+        color: #153131;
     }
 
     .dropdown-menu a:hover {
@@ -93,49 +101,47 @@
 
 <nav class="navbar">
     <div class="nav-container">
-        <a class="navbar-brand" href="{{ URL('/') }}">Stacja ładowarek.xD</a>
+        <a class="navbar-brand" href="{{ URL('/') }}"><span class="attention">Plug</span>&<span class="attention">Go</span></a>
         <ul class="navbar-nav">
             @guest
-                <li class="nav-item">
-                    <a class="nav-link {{ (request()->is('login')) ? 'active' : '' }}" href="{{ route('login') }}">Zaloguj</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ (request()->is('register')) ? 'active' : '' }}" href="{{ route('register') }}">Zarejestruj</a>
-                </li>
+            <li class="nav-item">
+                <a class="nav-link {{ (request()->is('login')) ? 'active' : '' }}" href="{{ route('login') }}">Zaloguj</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ (request()->is('register')) ? 'active' : '' }}" href="{{ route('register') }}">Zarejestruj</a>
+            </li>
             @else
-                @if(Auth::user()->permission == 'worker')
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('workers.index') }}">Panel Pracownika</a>
-                        <a class="nav-link" href="{{ route('chargers') }}">Lista Ładowarek</a>
+            @if(Auth::user()->permission == 'worker')
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('workers.index') }}">Panel Pracownika</a>
+                <a class="nav-link" href="{{ route('chargers') }}">Lista Ładowarek</a>
+            </li>
+            @endif
+
+            @if(Auth::user()->permission == 'user')
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('chargers') }}">Lista Ładowarek</a>
+            </li>
+
+            @endif
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    {{ Auth::user()->username }}
+                </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a class="dropdown-item" href="{{ route('profile') }}">Profil</a>
                     </li>
-                @endif
-
-                @if(Auth::user()->permission == 'user')
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('chargers') }}">Lista Ładowarek</a>
+                    <li>
+                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">Wyloguj</a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                            @csrf
+                        </form>
                     </li>
-
-                    @endif
-
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        {{ Auth::user()->username }}
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a class="dropdown-item" href="{{ route('profile') }}">Profil</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="{{ route('logout') }}"
-                               onclick="event.preventDefault();
-                                document.getElementById('logout-form').submit();"
-                            >Wyloguj</a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST">
-                                @csrf
-                            </form>
-                        </li>
-                    </ul>
-                </li>
+                </ul>
+            </li>
             @endguest
         </ul>
     </div>
