@@ -59,6 +59,8 @@
 </head>
 <body>
     <x-navbar/>
+    <br>
+    <br>
     <h1>Historia ładowań</h1>
 
     @if($chargingSessions->isEmpty())

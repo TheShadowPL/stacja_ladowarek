@@ -15,105 +15,103 @@
 </head>
 
 <body>
-    <x-navbar />
-    <section class="filters">
-        <form>
-            <div class="title">
-                <h1>Filtry</h1>
-            </div>
-            <div class="input">
-                <label for="loc" class="input-title">Lokalizacja</label>
-                <input id="loc" type="text" placeholder="Jelenia góra" />
-            </div>
-            <div class="input">
-                <label for="dis" class="input-title">Odległość</label>
-                <input id="dis" type="range" />
-            </div>
-            <div class="input">
-                <label for="pwr" class="input-title">Moc ładowarki</label>
-                <input id="pwr" type="range" />
-            </div>
+<x-navbar />
+<section class="filters">
+    <form id="filtersForm">
+        <div class="title">
+            <h1>Filtry</h1>
+        </div>
+        <div class="input">
+            <label for="loc" class="input-title">Lokalizacja</label>
+            <input id="loc" type="text" placeholder="Jelenia góra" />
+        </div>
+        <div class="input">
+            <label for="dis" class="input-title">Odległość</label>
+            <input id="dis" type="range" />
+        </div>
+        <div class="input">
+            <label for="pwr" class="input-title">Moc ładowarki</label>
+            <input id="pwr" type="range" />
+        </div>
 
-            <div id="comp" class="input">
-                <label for="comp" class="input-title">Kompatybilność</label>
-                <div class="checkbox-container">
-                    <div class="checkbox">
-                        <input id="stdCCS" type="checkbox" />
-                        <label for="CCS">CCS</label>
-                    </div>
-                    <div class="checkbox">
-                        <input id="stdCHAdeMO" type="checkbox" />
-                        <label for="CHAdeMO">CHAdeMO</label>
-                    </div>
-                    <div class="checkbox">
-                        <input id="stdTeslaSC" type="checkbox" />
-                        <label for="TeslaSC">Tesla Supercharger</label>
-                    </div>
-                    <div class="checkbox">
-                        <input id="stdType2" type="checkbox" />
-                        <label for="Type2">Type 2</label>
-                    </div>
+        <div id="comp" class="input">
+            <label for="comp" class="input-title">Kompatybilność</label>
+            <div class="checkbox-container">
+                <div class="checkbox">
+                    <input id="stdCCS" type="checkbox" />
+                    <label for="CCS">CCS</label>
+                </div>
+                <div class="checkbox">
+                    <input id="stdCHAdeMO" type="checkbox" />
+                    <label for="CHAdeMO">CHAdeMO</label>
+                </div>
+                <div class="checkbox">
+                    <input id="stdTeslaSC" type="checkbox" />
+                    <label for="TeslaSC">Tesla Supercharger</label>
+                </div>
+                <div class="checkbox">
+                    <input id="stdType2" type="checkbox" />
+                    <label for="Type2">Type 2</label>
                 </div>
             </div>
-            <div class="input">
-                <label for="brand" class="input-title">Marka ładowarki</label>
-                <input id="brand" type="text" placeholder="Samsung" />
+        </div>
+        <div class="input">
+            <label for="avab" class="input-title">Dostępność</label>
+            <br>
+            <input id="avab" type="date" />
+        </div>
+        <div class="input">
+            <label for="btt" class="input-title">&nbsp</label>
+            <div class="filter-butt">
+                <button id="btt" type="submit">Zatwierdź</button>
             </div>
-            <div class="input">
-                <label for="avab" class="input-title">Dostępność</label>
-                <input id="avab" type="text" placeholder="Dostępne" />
-            </div>
-            <div class="input">
-                <label for="btt" class="input-title">&nbsp</label>
-                <div class="filter-butt">
-                    <button id="btt">Zatwierdź</button>
-                </div>
-            </div>
-        </form>
-        <div style="
+        </div>
+    </form>
+    <div style="
                     display: flex;
                     flex-direction: column;
                     align-items: center;
                 ">
-            <a href="{{ route('malfunction') }}">Zgłoś awarię</a>
-        </div>
-    </section>
-    <section class="container">
-        <div class="title">
-            <h1>Ładowarki</h1>
-        </div>
-        <table class="charger-list">
-            <thead class="table-header">
-                <th>Dostępność</th>
-                <th>Lokalizacja</th>
-                <th>Cena [kWh]</th>
-                <th>Wolny termin</th>
-                <th>Zarezerwuj</th>
-            </thead>
-            @foreach ($chargers as $charger)
+        <a href="{{ route('malfunction') }}">Zgłoś awarię</a>
+    </div>
+</section>
+<section class="container">
+    <div class="title">
+        <h1>Ładowarki</h1>
+    </div>
+    <table id="chargerTable" class="charger-list">
+        <thead class="table-header">
+        <th>Dostępność</th>
+        <th>Lokalizacja</th>
+        <th>Odległość</th>
+        <th>Cena [kWh]</th>
+        <th>Standard</th>
+        <th>Wolny termin</th>
+        <th>Zarezerwuj</th>
+        </thead>
+        @foreach ($chargers as $charger)
             @if ($charger->status == 'available')
-            @php $charger->distance = 0.0; @endphp
+                @php $charger->distance = 0.0; @endphp
             @else
-            @php $charger->distance = 21.37; @endphp
+                @php $charger->distance = 21.37; @endphp
             @endif
             <tr class="charger">
-                <td class="charger-{{ strtolower($charger->status) }}">{{ $charger->status }}</td>
-                <td>
-                    <div class="charger-localisation">
-                        <div>{{ $charger->distance }} km</div>
-                        <div class="separator"></div>
-                        <div>
-                            <b>{{ $charger->city }}</b><br />
-                            ul. {{ $charger->street }} {{ $charger->number }}
-                        </div>
+                <td class="charger-availability">{{ $charger->status }}</td>
+                <td class="charger-location">
+                    <div>
+                        <b>{{ $charger->city }}</b><br />
+                        ul. {{ $charger->street }} {{ $charger->number }}
                     </div>
                 </td>
+                <td class="charger-distance">{{ $charger->distance }} km</td>
+
                 <td class="charger-price">{{ $charger->price }}</td>
+                <td class="charger-standard">{{ $charger->standard }}</td>
                 <td>
                     @if ($charger->closestTerm_date && $charger->closestTerm_time)
-                    {{ $charger->closestTerm_date }} {{ $charger->closestTerm_time }}
+                        {{ $charger->closestTerm_date }} {{ $charger->closestTerm_time }}
                     @else
-                    <b>Teraz</b>
+                        <b>Teraz</b>
                     @endif
                 </td>
                 <td>
@@ -127,9 +125,67 @@
                     </a>
                 </td>
             </tr>
-            @endforeach
-        </table>
-    </section>
+        @endforeach
+    </table>
+</section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const table = document.getElementById('chargerTable');
+        const form = document.getElementById('filtersForm');
+
+        form.addEventListener('submit', function (event) {
+            event.preventDefault(); // Zapobiegnij domyślnemu zachowaniu formularza
+            applyFilters();
+        });
+
+        function applyFilters() {
+            const filters = {
+                location: document.getElementById('loc').value.toLowerCase(),
+                distance: parseFloat(document.getElementById('dis').value),
+                power: parseFloat(document.getElementById('pwr').value),
+                compatibility: {
+                    CCS: document.getElementById('stdCCS').checked,
+                    CHAdeMO: document.getElementById('stdCHAdeMO').checked,
+                    TeslaSC: document.getElementById('stdTeslaSC').checked,
+                    Type2: document.getElementById('stdType2').checked,
+                },
+                availability: document.getElementById('avab').value,
+            };
+
+            Array.from(table.querySelectorAll('.charger')).forEach(function (row) {
+                const chargerLocation = row.querySelector('.charger-location').textContent.toLowerCase();
+                const chargerDistance = parseFloat(row.querySelector('.charger-distance').textContent);
+                // Moc ładowarki
+                const chargerPowerElement = row.querySelector('.charger-price');
+                const chargerPower = chargerPowerElement ? parseFloat(chargerPowerElement.textContent) : null;
+
+                const chargerCompatibilityCCS = row.querySelector('#stdCCS') ? row.querySelector('#stdCCS').checked : false;
+                const chargerCompatibilityCHAdeMO = row.querySelector('#stdCHAdeMO') ? row.querySelector('#stdCHAdeMO').checked : false;
+                const chargerCompatibilityTeslaSC = row.querySelector('#stdTeslaSC') ? row.querySelector('#stdTeslaSC').checked : false;
+                const chargerCompatibilityType2 = row.querySelector('#stdType2') ? row.querySelector('#stdType2').checked : false;
+                const chargerAvailability = row.querySelector('.charger-availability').textContent.toLowerCase();
+
+                const isLocationMatch = filters.location === '' || chargerLocation.includes(filters.location);
+                const isDistanceMatch = isNaN(filters.distance) || chargerDistance <= filters.distance;
+                const isPowerMatch = isNaN(filters.power) || chargerPower >= filters.power;
+
+                const isCompatibilityMatch = (!filters.compatibility.CCS || chargerCompatibilityCCS) &&
+                    (!filters.compatibility.CHAdeMO || chargerCompatibilityCHAdeMO) &&
+                    (!filters.compatibility.TeslaSC || chargerCompatibilityTeslaSC) &&
+                    (!filters.compatibility.Type2 || chargerCompatibilityType2);
+                const isAvailabilityMatch = filters.availability === 'all' || chargerAvailability.includes(filters.availability);
+
+                if (isLocationMatch && isDistanceMatch && isPowerMatch && isCompatibilityMatch && isAvailabilityMatch) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+    });
+</script>
+
 </body>
 
 </html>

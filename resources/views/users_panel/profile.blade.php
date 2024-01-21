@@ -8,8 +8,12 @@
 
     <title>Profil</title>
 </head>
+
 <body>
+<x-navbar/>
 <div class="container">
+    <br>
+    <a href="{{route('charge_history')}}">Historia ładowań</a>
     <form action="">
         <h1>Profil</h1>
         <label for="login">Imię</label>
@@ -34,6 +38,8 @@
         &nbsp
         <button type="submit">Zapisz</button>
     </form>
+
+
 </div>
 </body>
 </html>
