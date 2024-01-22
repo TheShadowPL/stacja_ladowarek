@@ -135,7 +135,7 @@
         const form = document.getElementById('filtersForm');
 
         form.addEventListener('submit', function (event) {
-            event.preventDefault(); // Zapobiegnij domyślnemu zachowaniu formularza
+            event.preventDefault();
             applyFilters();
         });
 

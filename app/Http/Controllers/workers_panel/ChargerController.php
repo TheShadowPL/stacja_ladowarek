@@ -34,13 +34,9 @@ class ChargerController extends Controller
 
     public function reservations_list()
     {
-        $reservations = Reservation_list::all();
-        $user = User::all();
-        $charger = Chargers::all();
-        return view('workers_panel.reservation_list', compact('reservations', 'user', 'charger'));
-
+        $reservations = Reservation_list::with('user', 'charger')->get();
+        return view('workers_panel.reservation_list', compact('reservations'));
     }
-
     public function edit($id)
     {
         $charger = Chargers::findOrFail($id);

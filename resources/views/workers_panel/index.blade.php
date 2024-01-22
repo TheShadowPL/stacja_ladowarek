@@ -79,7 +79,7 @@
 <section class="container">
     <h2>Panel Pracownika dla upośledzonych</h2>
     <p>dostępne funckje:</p>
-    <a  href="{{ route('workers.index') }}">Panel Pracownika</a>
+    <a href="{{ route('chargers.index') }}" class="cta-button">Panel Pracownika</a>
     <a href="{{ route('reservation_list') }}" class="cta-button">Lista rezerwacji</a>
     <a href="{{ route('malfunction_list') }}" class="cta-button">Lista zgłoszonych ładowarek</a>
 

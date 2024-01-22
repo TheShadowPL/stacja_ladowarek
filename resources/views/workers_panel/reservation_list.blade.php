@@ -8,7 +8,6 @@
 <body>
 <x-navbar />
 <h2>Lista Ładowarek</h2>
-
 <table>
     <thead>
     <tr>
@@ -20,21 +19,17 @@
     </tr>
     </thead>
     <tbody>
-    @foreach($reservations as $results)
-        @foreach($charger as $chargers)
-            @foreach($user as $users)
+    @foreach($reservations as $result)
         <tr>
-            <td>{{$charger -> id($results->charger_id)}}</td>
-            <td>{{$user -> id($results->user_id)}}</td>
-            <td>{{$results -> start_time}}</td>
-            <td>{{$results -> end_time}}</td>
+            <td>{{ $result->charger->city }}</td>
+            <td>{{ $result->user->username }}</td>
+            <td>{{ $result->start_time }}</td>
+            <td>{{ $result->end_time }}</td>
             <td>
-                <a href="{{ route('chargers.edit', $results->id) }}">Edytuj</a>
-                <!-- Dodać kiedys na controlerze ze usunieto stacje  -->
+                <a href="{{ route('chargers.edit', $result->charger->id) }}">Edytuj</a>
+                <!-- Dodać kiedyś na controlerze usuwanie stacji -->
             </td>
         </tr>
-          @endforeach
-        @endforeach
     @endforeach
 
     </tbody>
