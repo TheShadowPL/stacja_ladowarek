@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/reservation-page/reservation-page.css') }}">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <title>Wynajmij</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
 </head>
 
@@ -75,6 +76,24 @@
             </form>
 
             <script>
+                document.getElementById('start_time').addEventListener('input', function() {
+                    var today = new Date();
+                    var selectedDate = new Date(this.value);
+                    if (selectedDate < today) {
+                        alert('Nie można wybrać daty wcześniejszej niż dzisiaj.');
+                        this.value = '';
+                    }
+                });
+                document.getElementById('end_time').addEventListener('input', function() {
+                    var startTime = new Date(document.getElementById('start_time').value);
+                    var endTime = new Date(this.value);
+
+                    if (endTime <= startTime) {
+                        alert('Data zakończenia musi być późniejsza niż data rozpoczęcia.');
+                        this.value = '';
+                    }
+                });
+
                 document.getElementById('reservation_type').addEventListener('change', function() {
                     var capacitySection = document.getElementById('capacity_section');
                     var endTimeField = document.getElementById('end_time');

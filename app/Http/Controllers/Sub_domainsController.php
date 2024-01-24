@@ -109,7 +109,7 @@ class Sub_domainsController extends Controller
                 'created_at' => now(),
             ]);
 
-            return redirect()->route('index')
+            return redirect()->route('chargers')
                 ->withSuccess('Rezerwacja zakończona pomyślnie!');
         } catch (\Exception $e) {
             // Dodaj obsługę błędu - możesz zalogować błąd lub zwrócić odpowiedni widok

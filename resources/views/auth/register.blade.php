@@ -9,6 +9,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <title>Rejestracja</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 
 <body>
@@ -53,7 +54,20 @@
 
             <button type="submit" class="col-md-3 offset-md-5 btn btn-primary">Zarejestruj</button>
         </form>
+        <script>
+            document.getElementById('dob').addEventListener('input', function() {
+                var today = new Date();
+                var selectedDate = new Date(this.value);
+                if (selectedDate > today) {
+                    alert('Nie można wybrać daty starszej niż dzisiaj.');
+                    this.value = '';
+                }
+            });
+        </script>
     </div>
 </body>
+<script>
+
+</script>
 
 </html>
