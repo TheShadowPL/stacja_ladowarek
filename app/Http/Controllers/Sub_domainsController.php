@@ -7,10 +7,12 @@ use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
+use App\Models\Chargers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Services\OpenStreetMapService;
 
 class Sub_domainsController extends Controller
 {
@@ -26,6 +28,13 @@ class Sub_domainsController extends Controller
         return view('users_panel.index', ['user' => $user]);
     }
 
+    protected $openStreetMapService;
+
+    public function __construct(OpenStreetMapService $openStreetMapService)
+    {
+        $this->openStreetMapService = $openStreetMapService;
+    }
+
     public function chargers()
     {
         $user = null;
@@ -34,10 +43,51 @@ class Sub_domainsController extends Controller
         if (session()->has('username')) {
             $uname = session('username');
             $user = DB::table('users')->where('username', $uname)->first();
-            $chargers = DB::table('ladowarki')->get();
+            $chargers = Chargers::all();
+
+            // Współrzędne użytkownika potem bedzie brane z sesji
+            $userAddress = 'Wrocław';
+
+
+            foreach ($chargers as $charger) {
+                $userCoordinates = $this->openStreetMapService->getCoordinates($userAddress);
+                $chargerCoordinates = $this->openStreetMapService->getCoordinates($charger->fullAddress());
+
+                if ($userCoordinates && $chargerCoordinates) {
+                    $distanceInMeters = $this->calculateDistance($userCoordinates, $chargerCoordinates);
+
+                    //api zwraca w metrach XD
+                    $distanceInKilometers = $distanceInMeters / 1000;
+
+                    $charger->distance = $distanceInKilometers;
+                } else {
+                    $charger->distance = null;
+                }
+            }
+
+            // Sortowanko
+            //$chargers = $chargers->sortBy('distance');
         }
 
         return view('users_panel.ladowarki1', ['user' => $user, 'chargers' => $chargers]);
+    }
+
+    private function calculateDistance($userCoordinates, $chargerCoordinates)
+    {
+        $earthRadius = 6371000;
+
+        $latFrom = deg2rad($userCoordinates['latitude']);
+        $lonFrom = deg2rad($userCoordinates['longitude']);
+        $latTo = deg2rad($chargerCoordinates['latitude']);
+        $lonTo = deg2rad($chargerCoordinates['longitude']);
+
+        $latDelta = $latTo - $latFrom;
+        $lonDelta = $lonTo - $lonFrom;
+
+        $angle = 2 * asin(sqrt(pow(sin($latDelta / 2), 2) +
+            cos($latFrom) * cos($latTo) * pow(sin($lonDelta / 2), 2)));
+
+        return round($angle * $earthRadius);
     }
 
     public function malfunction()

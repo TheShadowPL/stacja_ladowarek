@@ -90,11 +90,6 @@
         <th>Zarezerwuj</th>
         </thead>
         @foreach ($chargers as $charger)
-            @if ($charger->status == 'available')
-                @php $charger->distance = 0.0; @endphp
-            @else
-                @php $charger->distance = 21.37; @endphp
-            @endif
             <tr class="charger">
                 <td class="charger-availability">{{ $charger->status }}</td>
                 <td class="charger-location">
@@ -103,7 +98,13 @@
                         ul. {{ $charger->street }} {{ $charger->number }}
                     </div>
                 </td>
-                <td class="charger-distance">{{ $charger->distance }} km</td>
+                <td class="charger-distance">
+                    @if ($charger->distance !== null)
+                        {{ $charger->distance }} km
+                    @else
+                        Brak danych
+                    @endif
+                </td>
 
                 <td class="charger-price">{{ $charger->price }}</td>
                 <td class="charger-standard">{{ $charger->standard }}</td>

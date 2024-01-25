@@ -15,4 +15,9 @@ class Chargers extends Model
         'city', 'street', 'number', 'comment', 'status', 'closestTerm_time', 'closestTerm_date',
         'standard', 'power', 'price'
     ];
+
+    public function fullAddress()
+    {
+        return $this->street . ' ' . $this->number . ', ' . $this->city;
+    }
 }

@@ -57,6 +57,17 @@
         button:hover {
             background-color: #45a049;
         }
+
+        a1{
+            display: inline-block;
+            padding: 1em 2em;
+            margin-top: 1em;
+            background-color: #01ae70;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
     </style>
 </head>
 
@@ -78,7 +89,7 @@
         <input type="password" name="confirmPassword" id="confirmPassword" required>
         <button type="submit">Zapisz</button>
     </form>
-    <a href="{{route('charge_history')}}">Historia ładowań</a>
+    <a1 href="{{route('charge_history')}}">Historia ładowań</a1>
 </div>
 </body>
 
