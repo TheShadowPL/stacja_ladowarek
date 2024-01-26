@@ -46,6 +46,8 @@ Route::middleware(['auth', 'user'])->prefix('users_panel')->group(function () {
     Route::get('/reservation/{charger_id}', [Sub_domainsController::class, 'reservation'])->name('reservation');
     Route::post('/reservation/{charger_id}', [Sub_domainsController::class, 'storeReservation'])->name('reservation.store');
     Route::get('/malfunction', [Sub_domainsController::class, 'malfunction'])->name('malfunction');
+    Route::post('/malfunction/store', [Sub_domainsController::class, 'malfunction_store'])->name('malfunction.store');
+
 });
 
 // Trasy dostępne dla pracowników w panelu pracownika
@@ -53,10 +55,18 @@ Route::middleware(['auth', 'worker'])->prefix('workers_panel')->group(function (
     Route::get('/chargers/create', [ChargerController::class, 'create'])->name('chargers.create');
     Route::post('/chargers/store', [ChargerController::class, 'store'])->name('chargers.store');
     Route::get('/chargers/index', [ChargerController::class, 'index'])->name('chargers.index');
+    Route::delete('/chargers/delete/{id}', [ChargerController::class, 'delete'])->name('chargers.delete');
+    Route::get('/chargers/delete/{id}', [ChargerController::class, 'delete'])->name('chargers.delete');
     Route::get('/index', [ChargerController::class, 'worker_page'])->name('workers.index');
     Route::get('/', [ChargerController::class, 'worker_page']);
     Route::get('/malfunction_list', [ChargerController::class, 'mallfunction_list'])->name('malfunction_list');
+    Route::get('/malfunction_list/edit/{id}', [ChargerController::class, 'editMalfunction'])->name('malfunction_list.edit');
+    Route::put('/malfunction_list/update/{id}', [ChargerController::class, 'updateMalfunction'])->name('malfunction_list.update');
+    Route::delete('/malfunction_list/delete/{id}', [ChargerController::class, 'deleteMalfunction'])->name('malfunction_list.delete');
     Route::get('/reservation_list', [ChargerController::class, 'reservations_list'])->name('reservation_list');
+    Route::get('/reservation_list/edit/{id}', [ChargerController::class, 'editReservation'])->name('reservation_list.edit');
+    Route::put('/reservation_list/update/{id}', [ChargerController::class, 'updateReservation'])->name('reservation_list.update');
+    Route::delete('/reservation_list/delete/{id}', [ChargerController::class, 'deleteReservation'])->name('reservation_list.delete');
     Route::get('/chargers/edit/{id}', [ChargerController::class, 'edit'])->name('chargers.edit');
     Route::put('/chargers/update/{id}', [ChargerController::class, 'update'])->name('chargers.update');
 

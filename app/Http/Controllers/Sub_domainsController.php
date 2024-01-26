@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\Chargers;
+use App\Models\Mallfunctions_List;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -92,7 +93,39 @@ class Sub_domainsController extends Controller
 
     public function malfunction()
     {
-        return view('users_panel.malfunction');
+        $chargers = Chargers::all();
+        return view('users_panel.malfunction', compact('chargers'));
+    }
+
+    public function malfunction_store(Request $request)
+    {
+        try{
+            $request->validate([
+                'charger_id' => 'required',
+                'description' => 'required',
+            ]);
+
+            $uname = session('username');
+            $user = DB::table('users')->where('username', $uname)->first();
+
+            Mallfunctions_List::create([
+                'charger_id' => $request->charger_id,
+                'user_id' => $user->id,
+                'reported_time' => now(),
+                'description' => $request->description,
+
+            ]);
+
+            return redirect()->back()->with('success', 'Awaria została zgłoszona pomyślnie.');
+        }
+        catch(\Exception $e){
+            return redirect()->back()->withErrors([
+                'error' => 'Wystąpił błąd podczas zapisywania usterki. Szczegóły: ' . $e->getMessage(),
+                'charger_id' => $request->charger_id,
+                'description' => $request->description,
+                'user_id' => $user->id,
+            ])->withInput($request->all());
+        }
     }
 
 

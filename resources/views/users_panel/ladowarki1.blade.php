@@ -66,14 +66,17 @@
                 <button id="btt" type="submit">Zatwierdź</button>
             </div>
         </div>
-    </form>
-    <div style="
+
+        <br>
+        <div style="
                     display: flex;
                     flex-direction: column;
                     align-items: center;
                 ">
-        <a href="{{ route('malfunction') }}">Zgłoś awarię</a>
-    </div>
+            <a href="{{ route('malfunction') }}">Zgłoś awarię</a>
+        </div>
+    </form>
+
 </section>
 <section class="container">
     <div class="title">

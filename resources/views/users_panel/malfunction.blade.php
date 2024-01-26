@@ -12,15 +12,28 @@
 
 <body>
     <div class="container">
-        <form action="">
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <strong>Błąd!</strong> Wystąpił problem podczas zapisywania usterki.
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+        <form action="{{ route('malfunction.store') }}" method="POST">
+            @csrf
             <h1 class="exclamation">!</h1>
             <h1>Zgłoś awarie</h1>
             <label for="login">Wybierz ładowarke</label>
-            <select type="" name="login" id="">
-                <option value="">Szklarska Poręba ul. Mickiewicza 30</option>
-                <option value="">Karpacz ul. Batorego 66</option>
-                <option value=""><b>Jelenia góra ul. Józefa Piłsudskiego 15</b></option>
+            <select name="charger_id" id="charger_id">
+                @foreach($chargers as $charger)
+                    <option value="{{ $charger->id }}">{{ $charger->city }} ul. {{ $charger->street }} {{$charger->number}}</option>
+                @endforeach
             </select>
+            <label for="description">Opis awarii:</label>
+            <textarea name="description" rows="4" cols="50" placeholder="Opisz awarię" required></textarea>
             <br />
             &nbsp
             <button type="submit">Zgłoś</button>

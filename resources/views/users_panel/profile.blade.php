@@ -58,7 +58,7 @@
             background-color: #45a049;
         }
 
-        a1{
+        .button_a{
             display: inline-block;
             padding: 1em 2em;
             margin-top: 1em;
@@ -89,7 +89,7 @@
         <input type="password" name="confirmPassword" id="confirmPassword" required>
         <button type="submit">Zapisz</button>
     </form>
-    <a1 href="{{route('charge_history')}}">Historia ładowań</a1>
+    <a class="button_a" href="{{route('charge_history')}}">Historia ładowań</a>
 </div>
 </body>
 
