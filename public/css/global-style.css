@@ -36,6 +36,7 @@ input[type="range"],
 input[type="password"],
 input[type="email"],
 input[type="submit"],
+input[type="number"],
 select,
 button {
     font-size: 1em;
