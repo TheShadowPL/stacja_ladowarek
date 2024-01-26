@@ -68,8 +68,10 @@
 <body>
 
 <x-navbar />
+<br>
 
 <header>
+    <br>
     <h3>Stacja Ładowarek</h3>
     <p1>Ładowanie Przyszłości</p1>
 </header>
@@ -77,8 +79,8 @@
 
 
 <section class="container">
-    <h2>Panel Pracownika dla upośledzonych</h2>
-    <p>dostępne funckje:</p>
+    <br>
+    <h2>Panel Pracownika</h2>
     <a href="{{ route('chargers.index') }}" class="cta-button">Panel Pracownika</a>
     <a href="{{ route('reservation_list') }}" class="cta-button">Lista rezerwacji</a>
     <a href="{{ route('malfunction_list') }}" class="cta-button">Lista zgłoszonych ładowarek</a>

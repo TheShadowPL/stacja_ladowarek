@@ -17,48 +17,36 @@
 <body>
 <x-navbar />
 <section class="filters">
-    <form id="filtersForm">
+    <form id="filtersForm" action="{{ route('chargers') }}" method="GET">
         <div class="title">
             <h1>Filtry</h1>
         </div>
         <div class="input">
             <label for="loc" class="input-title">Lokalizacja</label>
-            <input id="loc" type="text" placeholder="Jelenia góra" />
+            <input id="loc" name="location" type="text" placeholder="Jelenia góra" />
         </div>
-        <div class="input">
-            <label for="dis" class="input-title">Odległość</label>
-            <input id="dis" type="range" />
-        </div>
-        <div class="input">
-            <label for="pwr" class="input-title">Moc ładowarki</label>
-            <input id="pwr" type="range" />
-        </div>
+
 
         <div id="comp" class="input">
             <label for="comp" class="input-title">Kompatybilność</label>
             <div class="checkbox-container">
                 <div class="checkbox">
-                    <input id="stdCCS" type="checkbox" />
+                    <input id="stdCCS" name="compatibility[]" value="CCS" type="checkbox" />
                     <label for="CCS">CCS</label>
                 </div>
                 <div class="checkbox">
-                    <input id="stdCHAdeMO" type="checkbox" />
+                    <input id="stdCHAdeMO" name="compatibility[]" value="CHAdeMO" type="checkbox" />
                     <label for="CHAdeMO">CHAdeMO</label>
                 </div>
                 <div class="checkbox">
-                    <input id="stdTeslaSC" type="checkbox" />
+                    <input id="stdTeslaSC" name="compatibility[]" value="TeslaSC" type="checkbox" />
                     <label for="TeslaSC">Tesla Supercharger</label>
                 </div>
                 <div class="checkbox">
-                    <input id="stdType2" type="checkbox" />
+                    <input id="stdType2" name="compatibility[]" value="Type2" type="checkbox" />
                     <label for="Type2">Type 2</label>
                 </div>
             </div>
-        </div>
-        <div class="input">
-            <label for="avab" class="input-title">Dostępność</label>
-            <br>
-            <input id="avab" type="date" />
         </div>
         <div class="input">
             <label for="btt" class="input-title">&nbsp</label>
@@ -66,7 +54,6 @@
                 <button id="btt" type="submit">Zatwierdź</button>
             </div>
         </div>
-
         <br>
         <div style="
                     display: flex;
@@ -76,7 +63,6 @@
             <a href="{{ route('malfunction') }}">Zgłoś awarię</a>
         </div>
     </form>
-
 </section>
 <section class="container">
     <div class="title">
@@ -134,62 +120,36 @@
 </section>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const table = document.getElementById('chargerTable');
-        const form = document.getElementById('filtersForm');
+    document.addEventListener("DOMContentLoaded", function () {
+        const filtersForm = document.getElementById('filtersForm');
+        const locInput = document.getElementById('loc');
+        const compatibilityCheckboxes = document.querySelectorAll('input[name="compatibility[]"]');
 
-        form.addEventListener('submit', function (event) {
+        filtersForm.addEventListener('submit', function (event) {
             event.preventDefault();
-            applyFilters();
-        });
 
-        function applyFilters() {
-            const filters = {
-                location: document.getElementById('loc').value.toLowerCase(),
-                distance: parseFloat(document.getElementById('dis').value),
-                power: parseFloat(document.getElementById('pwr').value),
-                compatibility: {
-                    CCS: document.getElementById('stdCCS').checked,
-                    CHAdeMO: document.getElementById('stdCHAdeMO').checked,
-                    TeslaSC: document.getElementById('stdTeslaSC').checked,
-                    Type2: document.getElementById('stdType2').checked,
-                },
-                availability: document.getElementById('avab').value,
-            };
+            const locationFilter = locInput.value.trim().toLowerCase();
+            const compatibilityFilters = Array.from(compatibilityCheckboxes)
+                .filter(checkbox => checkbox.checked)
+                .map(checkbox => checkbox.value);
 
-            Array.from(table.querySelectorAll('.charger')).forEach(function (row) {
-                const chargerLocation = row.querySelector('.charger-location').textContent.toLowerCase();
-                const chargerDistance = parseFloat(row.querySelector('.charger-distance').textContent);
-                // Moc ładowarki
-                const chargerPowerElement = row.querySelector('.charger-price');
-                const chargerPower = chargerPowerElement ? parseFloat(chargerPowerElement.textContent) : null;
+            const chargers = document.querySelectorAll('.charger');
+            chargers.forEach(charger => {
+                const chargerLocation = charger.querySelector('.charger-location').textContent.trim().toLowerCase();
+                const chargerCompatibility = charger.querySelector('.charger-standard').textContent.trim();
 
-                const chargerCompatibilityCCS = row.querySelector('#stdCCS') ? row.querySelector('#stdCCS').checked : false;
-                const chargerCompatibilityCHAdeMO = row.querySelector('#stdCHAdeMO') ? row.querySelector('#stdCHAdeMO').checked : false;
-                const chargerCompatibilityTeslaSC = row.querySelector('#stdTeslaSC') ? row.querySelector('#stdTeslaSC').checked : false;
-                const chargerCompatibilityType2 = row.querySelector('#stdType2') ? row.querySelector('#stdType2').checked : false;
-                const chargerAvailability = row.querySelector('.charger-availability').textContent.toLowerCase();
+                const locationMatch = chargerLocation.includes(locationFilter);
+                const compatibilityMatch = compatibilityFilters.length === 0 || compatibilityFilters.includes(chargerCompatibility);
 
-                const isLocationMatch = filters.location === '' || chargerLocation.includes(filters.location);
-                const isDistanceMatch = isNaN(filters.distance) || chargerDistance <= filters.distance;
-                const isPowerMatch = isNaN(filters.power) || chargerPower >= filters.power;
-
-                const isCompatibilityMatch = (!filters.compatibility.CCS || chargerCompatibilityCCS) &&
-                    (!filters.compatibility.CHAdeMO || chargerCompatibilityCHAdeMO) &&
-                    (!filters.compatibility.TeslaSC || chargerCompatibilityTeslaSC) &&
-                    (!filters.compatibility.Type2 || chargerCompatibilityType2);
-                const isAvailabilityMatch = filters.availability === 'all' || chargerAvailability.includes(filters.availability);
-
-                if (isLocationMatch && isDistanceMatch && isPowerMatch && isCompatibilityMatch && isAvailabilityMatch) {
-                    row.style.display = '';
+                if (locationMatch && compatibilityMatch) {
+                    charger.style.display = 'table-row';
                 } else {
-                    row.style.display = 'none';
+                    charger.style.display = 'none';
                 }
             });
-        }
+        });
     });
 </script>
-
 </body>
 
 </html>

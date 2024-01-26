@@ -46,7 +46,7 @@ class Sub_domainsController extends Controller
             $user = DB::table('users')->where('username', $uname)->first();
             $chargers = Chargers::all();
 
-            // Współrzędne użytkownika potem bedzie brane z sesji
+            // Lokalizacja użytkownika ustawione na statyczne bo po podpieciu lokalizacji uzytkownika api strasznie dlugo ładowało dane
             $userAddress = 'Wrocław';
 
 
