@@ -76,6 +76,10 @@
     <p1>Ładowanie Przyszłości</p1>
 </header>
 
+@if ($notification['type'] == null)
+@else
+    <x-notify :type="$notification['type']" :message="$notification['message']" />
+@endif
 
 
 <section class="container">

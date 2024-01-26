@@ -23,7 +23,11 @@ class ChargerController extends Controller
 
     public function worker_page()
     {
-        return view('workers_panel.index');
+        $notification = [
+            'type' => null,
+            'message' => 'Siema Murzynie!'
+        ];
+        return view('workers_panel.index', compact('notification'));
     }
 
     public function mallfunction_list()
@@ -77,7 +81,10 @@ class ChargerController extends Controller
                 'type' => 'error',
                 'message' => 'Nie można usunąć ładowarki, ponieważ jest przypisana do rezerwacji!'
             ];
-            return redirect()->route('chargers.index')->with('notification', $notification);
+
+            session()->flash('notification_chargers_index', $notification);
+
+            return redirect()->route('chargers.index');
         }
     }
 

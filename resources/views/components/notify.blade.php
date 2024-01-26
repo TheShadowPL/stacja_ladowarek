@@ -99,9 +99,10 @@
         cursor: pointer;
     }
 </style>
+
 @if ($type != null && $message != null)
     <div class="wrapper">
-        <div class="toast {{ $type }}">
+        <div class="toast {{ $type }}" id="toast">
             <div class="container-1">
                 <h1> {{$type, $message}}</h1>
                 @if ($type == 'success')
@@ -118,11 +119,13 @@
                 <p>{{ ucfirst($type) }}</p>
                 <p>{{ $message }}</p>
             </div>
-            <button>&times;</button>
+            <button id="closeButton">&times;</button>
         </div>
     </div>
-@else
+
     <script>
-        alert('Typ : {{ $type }} lub wiadomość : {{ $message }} nie może być puste!');
+        document.getElementById('closeButton').addEventListener('click', function() {
+            document.getElementById('toast').style.display = 'none';
+        });
     </script>
 @endif

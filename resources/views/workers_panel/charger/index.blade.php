@@ -67,10 +67,12 @@
 </head>
 <body>
 <x-navbar />
-<script>
-    alert("{{ $notification['message'] }}", "{{ $notification['type'] }}");
-</script>
-<x-notify :type="$notification['type']" :message="$notification['message']" />
+
+
+
+@if (session()->has('notification_chargers_index'))
+    <x-notify :type="session('notification_chargers_index.type')" :message="session('notification_chargers_index.message')" />
+@endif
 <br>
 <br>
 <br>
