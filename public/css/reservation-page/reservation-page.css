@@ -21,11 +21,13 @@ form {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 1.5em;
+    gap: 0.5em;
 }
 
 p {
     font-size: 1.2em;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
 }
 
 .right-container {

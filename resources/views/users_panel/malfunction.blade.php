@@ -13,23 +13,23 @@
 <body>
     <div class="container">
         @if ($errors->any())
-            <div class="alert alert-danger">
-                <strong>Błąd!</strong> Wystąpił problem podczas zapisywania usterki.
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
+        <div class="alert alert-danger">
+            <strong>Błąd!</strong> Wystąpił problem podczas zapisywania usterki.
+            <ul>
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
         @endif
         <form action="{{ route('malfunction.store') }}" method="POST">
             @csrf
-            <h1 class="exclamation">!</h1>
+            <h2 class="exclamation">!</h2>
             <h1>Zgłoś awarie</h1>
             <label for="login">Wybierz ładowarke</label>
             <select name="charger_id" id="charger_id">
                 @foreach($chargers as $charger)
-                    <option value="{{ $charger->id }}">{{ $charger->city }} ul. {{ $charger->street }} {{$charger->number}}</option>
+                <option value="{{ $charger->id }}">{{ $charger->city }} ul. {{ $charger->street }} {{$charger->number}}</option>
                 @endforeach
             </select>
             <label for="description">Opis awarii:</label>

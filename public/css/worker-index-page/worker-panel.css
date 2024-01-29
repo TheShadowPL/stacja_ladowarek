@@ -1,0 +1,25 @@
+body {
+    flex-direction: column;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+.container a {
+    text-decoration: none;
+    padding: 0.5em;
+    color: #153131;
+    font-size: 1.5em;
+    transition: padding-left 0.2s linear;
+}
+
+.container a:hover {
+    padding-left: 1em;
+}
+
+h2 {
+    font-size: 4em;
+}

@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dodaj Nową Ładowarkę</title>
+    <title>Dodaj nową ładowarkę</title>
 </head>
-<body>
-<x-navbar />
 
-    <h2>Dodaj Nową Ładowarkę</h2>
+<body>
+    <x-navbar />
+
+    <h2>Dodaj nową ładowarkę</h2>
 
     <form method="post" action="{{ route('chargers.store') }}">
         @csrf
@@ -46,4 +48,5 @@
     </form>
 
 </body>
+
 </html>

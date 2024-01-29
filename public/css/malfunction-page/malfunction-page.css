@@ -3,14 +3,21 @@
     --gray: #7f879f40;
 }
 
+body {
+    align-items: flex-start;
+}
+
 .exclamation {
-    font-size: 5rem;
+    font-size: 5em;
     color: var(--red);
 }
 
 .container {
-    background-color: var(--gray);
     padding: 2rem;
+}
+
+h2 {
+    font-size: 4em;
 }
 
 form {
@@ -18,6 +25,13 @@ form {
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    font-size: 1.2em;
+}
+
+textarea {
+    border: none;
+    box-shadow: #00000022 5px 5px 30px;
+    padding: 1em;
 }
 
 button {

@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edytuj Ładowarkę</title>
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/global-style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/worker-page/edit-charger.css') }}">
+    <title>Edytuj ładowarkę</title>
     <!-- Dodaj ewentualne stylizacje CSS -->
 </head>
+
 <body>
-<x-navbar />
-    <h2>Edytuj Ładowarkę</h2>
+    <x-navbar />
+    <h2>Edytuj ładowarkę</h2>
 
     <form method="post" action="{{ route('chargers.update', $charger->id) }}">
         @csrf
@@ -35,8 +39,9 @@
         <label for="price">Cena:</label>
         <input type="text" name="price" value="{{ $charger->price }}" required>
 
-        <button type="submit">Zapisz Edycję</button>
+        <button type="submit">Zapisz edycję</button>
     </form>
 
 </body>
+
 </html>

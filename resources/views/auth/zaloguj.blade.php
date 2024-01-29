@@ -31,7 +31,7 @@
             <span class="text-danger">{{ $errors->first('password') }}</span>
             @endif
             <br>
-            <input type="submit" value="Login">
+            <input type="submit" value="Zaloguj">
         </form>
     </div>
 </body>

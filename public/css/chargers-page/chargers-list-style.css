@@ -37,7 +37,7 @@
 }
 
 .charger-list .charger .charger-unavailable {
-    color: #153131;
+    color: #b20000;
     font-weight: bold;
 }
 
@@ -58,4 +58,6 @@
 
 .charger-list tbody {
     overflow-y: scroll;
+    padding-bottom: 2em;
+    margin-bottom: 2em;
 }

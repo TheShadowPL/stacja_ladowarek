@@ -1,0 +1,23 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.avatar {
+    width: 12em;
+    height: 12em;
+    background: url(../../img/avatar.jpeg);
+    background-size: cover;
+}
+
+h2 {
+    font-size: 4em;
+}
+
+.container a {
+    text-decoration: none;
+    color: #153131;
+    transition: padding-left 0.2s linear;
+    font-size: 1.5em;
+}
