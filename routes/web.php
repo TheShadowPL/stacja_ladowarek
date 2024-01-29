@@ -5,6 +5,7 @@ use App\Http\Controllers\Sub_domainsController;
 use App\Http\Controllers\ChargingHistoryController;
 use App\Http\Controllers\workers_panel\ChargerController;
 use App\Http\Controllers\Auth\LoginRegisterController;
+use App\Http\Controllers\Redirect_Controler;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,7 +29,18 @@ Route::controller(LoginRegisterController::class)->group(function() {
     Route::post('/logout', 'logout')->name('logout');
 });
 
+//Kontroler przekierowywanie do stron z powiadomieniami
 
+Route::controller(Redirect_Controler::class)->prefix('preloadings')->group(function (){
+   Route::get('/login_redirect', 'login')->name('login_redirect');
+   Route::get('/register_redirect', 'register')->name('register_redirect');
+   Route::get('/load_chargers_list', 'chargers_list')->name('chargers_list');
+
+});
+
+Route::get('/powiadomienia', function () {
+    return view('components.powiadomienia');
+});
 
 
 Route::get('/about', function () {

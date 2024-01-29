@@ -54,13 +54,16 @@ class LoginRegisterController extends Controller
         Auth::attempt($credentials);
         session(['username' => Auth::user()->username]);
         $request->session()->regenerate();
-        return redirect()->route('chargers')
-            ->withSuccess('Pomyślnie zarejestrowano oraz zalogowano!');
+        return redirect()->route('register_redirect');
     }
 
 
     public function login()
     {
+        $notification = [
+            'type' => null, // success, error, info, warning, null (brak powiadomienia)
+            'message' => 'Zarejestrowano i zalogowano pomyslnie!' // wiadomość
+        ];
         return view('auth.zaloguj');
     }
 
@@ -75,8 +78,7 @@ class LoginRegisterController extends Controller
         {
             session(['username' => Auth::user()->username]);
             $request->session()->regenerate();
-            return redirect()->route('chargers')
-                ->withSuccess('Pomyślnie Zalogowano!');
+            return redirect()->route('login_redirect');
         }
 
         return back()->withErrors([
@@ -90,7 +92,7 @@ class LoginRegisterController extends Controller
     {
         if(Auth::check())
         {
-            return view('chargers');
+            return route('chargers_list');
         }
 
         return redirect()->route('login')
@@ -102,8 +104,11 @@ class LoginRegisterController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect()->route('login')
-            ->withSuccess('Zostałeś wylogowany!');
+        $notification = [
+            'type' => 'info', // success, error, info, warning
+            'message' => 'Zostałeś wylogowany!' // wiadomość
+        ];
+        return redirect()->route('login', compact('notification'));
     }
 
 }

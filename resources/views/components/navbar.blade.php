@@ -114,13 +114,13 @@
             @if(Auth::user()->permission == 'worker')
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('workers.index') }}">Panel Pracownika</a>
-                <a class="nav-link" href="{{ route('chargers') }}">Lista Ładowarek</a>
+                <a class="nav-link" href="{{ route('chargers_list') }}">Lista Ładowarek</a>
             </li>
             @endif
 
             @if(Auth::user()->permission == 'user')
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('chargers') }}">Lista Ładowarek</a>
+                <a class="nav-link" href="{{ route('chargers_list') }}">Lista Ładowarek</a>
             </li>
 
             @endif
