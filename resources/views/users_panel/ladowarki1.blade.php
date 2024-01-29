@@ -80,7 +80,23 @@
         </thead>
         @foreach ($chargers as $charger)
             <tr class="charger">
-                <td class="charger-availability">{{ $charger->status }}</td>
+                @if ($charger->status === 'available')
+                    <td class="charger-availability available">
+                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="6" cy="6" r="6" fill="#00BFA6"/>
+                        </svg>
+                        Dostępna
+                    </td>
+                @elseif ($charger->status === 'unavailable')
+                    <td class="charger-availability unavailable">
+                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="6" cy="6" r="6" fill="#FF3D71"/>
+                        </svg>
+                        Niedostępna
+                    </td>
+                @endif
                 <td class="charger-location">
                     <div>
                         <b>{{ $charger->city }}</b><br />
