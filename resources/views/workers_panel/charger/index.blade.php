@@ -11,8 +11,8 @@
 
 <body>
     <x-navbar />
-    @if (session()->has('notification_chargers_index'))
-    <x-notify :type="session('notification_chargers_index.type')" :message="session('notification_chargers_index.message')" />
+    @if (session('notification'))
+        <x-notify :type="session('notification')['type']" :message="session('notification')['message']" />
     @endif
     <div class="container">
         <h2>Lista <span class="attention">ładowarek</span></h2>
@@ -28,6 +28,7 @@
                             <th>Standard</th>
                             <th>Moc</th>
                             <th>Cena</th>
+                            <th>Blokada</th>
                             <th>Akcje</th>
                         </tr>
                     </thead>
@@ -45,14 +46,14 @@
                             <td>{{ $charger->standard }}</td>
                             <td>{{ $charger->power }}</td>
                             <td>{{ $charger->price }}</td>
+                            <td>@if($charger->locked == 'false' ) Odblokowana @else Zablokowana @endif</td>
                             <td>
                                 <a href="{{ route('chargers.edit', $charger->id) }}">✏️ Edytuj</a>
-                                <form method="post" action="">
+                                <form action="{{ route('chargers.delete', $charger->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <a class="bin-icon" href="{{ route('chargers.delete', $charger->id) }}">🗑️ Usuń</a>
+                                    <button type="submit" style="border: none; background: none; color: #153131; cursor: pointer;">🗑️ Usuń</button>
                                 </form>
-                                <!-- Dodać kiedys na controlerze ze usunieto stacje  -->
                             </td>
                         </tr>
                         @endforeach

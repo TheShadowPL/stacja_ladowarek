@@ -6,6 +6,7 @@ use App\Http\Controllers\ChargingHistoryController;
 use App\Http\Controllers\workers_panel\ChargerController;
 use App\Http\Controllers\Auth\LoginRegisterController;
 use App\Http\Controllers\Redirect_Controler;
+use App\Http\Controllers\admin_panel\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,6 +58,7 @@ Route::middleware(['auth', 'user'])->prefix('users_panel')->group(function () {
     Route::get('/chargers', [Sub_domainsController::class, 'chargers'])->name('chargers');
     Route::get('/reservation/{charger_id}', [Sub_domainsController::class, 'reservation'])->name('reservation');
     Route::post('/reservation/{charger_id}', [Sub_domainsController::class, 'storeReservation'])->name('reservation.store');
+    Route::delete('charging-history/delete/{id}', [ChargingHistoryController::class, 'delete'])->name('charge_history.delete');
     Route::get('/malfunction', [Sub_domainsController::class, 'malfunction'])->name('malfunction');
     Route::post('/malfunction/store', [Sub_domainsController::class, 'malfunction_store'])->name('malfunction.store');
 
@@ -81,5 +83,28 @@ Route::middleware(['auth', 'worker'])->prefix('workers_panel')->group(function (
     Route::delete('/reservation_list/delete/{id}', [ChargerController::class, 'deleteReservation'])->name('reservation_list.delete');
     Route::get('/chargers/edit/{id}', [ChargerController::class, 'edit'])->name('chargers.edit');
     Route::put('/chargers/update/{id}', [ChargerController::class, 'update'])->name('chargers.update');
+});
+
+// Trasy dostępne dla administratorów w panelu administratora
+
+Route::middleware(['auth', 'admin'])->controller(AdminController::class)->prefix('admin_panel')->group(function(){
+    Route::get('/index', 'index')->name('admin.index');
+    Route::get('/users', 'users')->name('admin.users');
+    Route::get('/users/edit/{id}', 'edit_user')->name('admin.users.edit');
+    Route::put('/users/update/{id}', 'update_user')->name('admin.users.update');
+    Route::delete('/users/delete/{id}', 'delete_user')->name('admin.users.delete');
+    Route::get('/users/create', 'create_user')->name('admin.users.create');
+    Route::post('/users/store', 'store_user')->name('admin.users.store');
+    Route::get('/users/workers', 'worker_list')->name('admin.worker_list');
+    Route::get('/users/worker/{id}', 'edit_worker')->name('admin.worker');
+    Route::put('/users/worker/update/{id}', 'update_worker')->name('admin.worker.update');
+    Route::delete('/users/worker/delete/{id}', 'delete_worker')->name('admin.worker.delete');
+    Route::get('/worker/create', 'create_worker')->name('admin.worker.create');
+    Route::post('/users/worker/store', 'store_worker')->name('admin.worker.store');
+    Route::get('/chargers/create', 'create_charger')->name('admin.chargers.create');
+    Route::post('/chargers/store', 'store_charger')->name('admin.chargers.store');
+
+
+
 
 });

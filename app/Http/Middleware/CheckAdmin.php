@@ -6,11 +6,16 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class CheckWorker
+class CheckAdmin
 {
+    /**
+     * Handle an incoming request.
+     *
+     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
+     */
     public function handle($request, Closure $next)
     {
-        if (auth()->check() && auth()->user()->permission === 'worker' or auth()->user()->permission === 'admin') {
+        if (auth()->check() && auth()->user()->permission === 'admin') {
             return $next($request);
         }
 

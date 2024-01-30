@@ -13,7 +13,7 @@ class Chargers extends Model
     protected $table = 'ladowarki';
     protected $fillable = [
         'city', 'street', 'number', 'comment', 'status', 'closestTerm_time', 'closestTerm_date',
-        'standard', 'power', 'price'
+        'standard', 'power', 'price', 'locked'
     ];
 
     public function fullAddress()

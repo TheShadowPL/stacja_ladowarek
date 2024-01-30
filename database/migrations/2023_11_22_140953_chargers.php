@@ -24,6 +24,7 @@ return new class extends Migration
                 $table->string('standard');
                 $table->decimal('power', 8, 2);
                 $table->decimal('price', 8, 2);
+                $table->string('locked')->default('false');
                 $table->timestamps();
             });
         }

@@ -94,7 +94,11 @@ class Sub_domainsController extends Controller
     public function malfunction()
     {
         $chargers = Chargers::all();
-        return view('users_panel.malfunction', compact('chargers'));
+        $notification = [
+            'type' =>  null, // success, error, info, warning, null (brak powiadomienia)
+            'message' => '' // wiadomość
+        ];
+        return view('users_panel.malfunction', compact('chargers'))->with('notification', $notification);
     }
 
     public function malfunction_store(Request $request)
@@ -104,6 +108,10 @@ class Sub_domainsController extends Controller
                 'charger_id' => 'required',
                 'description' => 'required',
             ]);
+            $notification = [
+                'type' => 'info', // success, error, info, warning
+                'message' => 'Zgłoszono Awarie ładowarki!' // wiadomość
+            ];
 
             $uname = session('username');
             $user = DB::table('users')->where('username', $uname)->first();
@@ -116,15 +124,14 @@ class Sub_domainsController extends Controller
 
             ]);
 
-            return redirect()->back()->with('success', 'Awaria została zgłoszona pomyślnie.');
+            return redirect()->back()->with('notification', $notification);
         }
         catch(\Exception $e){
-            return redirect()->back()->withErrors([
-                'error' => 'Wystąpił błąd podczas zapisywania usterki. Szczegóły: ' . $e->getMessage(),
-                'charger_id' => $request->charger_id,
-                'description' => $request->description,
-                'user_id' => $user->id,
-            ])->withInput($request->all());
+            $notification = [
+                'type' => 'error', // success, error, info, warning
+                'message' => 'Wystąpił błąd podczas zapisywania usterki. Szczegóły: ' . $e->getMessage() , $request->charger_id, $request->description, $user->id // wiadomość
+            ];
+            return redirect()->back()->with('notification', $notification);
         }
     }
 
@@ -169,6 +176,11 @@ class Sub_domainsController extends Controller
             $user_id = $user -> id;
             $charger = DB::table('ladowarki')->find($charger_id);
 
+            $notification = [
+                'type' => 'success', // success, error, info, warning
+                'message' => 'Rezerwacja zakończona pomyślnie!' // wiadomość
+            ];
+
             DB::table('reservations')->insert([
                 'charger_id' => $charger_id,
                 'user_id' => $user->id,
@@ -192,8 +204,7 @@ class Sub_domainsController extends Controller
                 'created_at' => now(),
             ]);
 
-            return redirect()->route('chargers')
-                ->withSuccess('Rezerwacja zakończona pomyślnie!');
+            return redirect()->route('chargers_list')->with('notification', $notification);
         } catch (\Exception $e) {
             // Dodaj obsługę błędu - możesz zalogować błąd lub zwrócić odpowiedni widok
             return redirect()->back()->withErrors([

@@ -49,7 +49,7 @@
             <input type="date" class="form-control" name="dob" id="dob">
             <br>
             <label for="phone_number">Numer Telefonu</label>
-            <input type="text" class="form-control" name="phone_number" id="phone_number">
+            <input type="text" class="form-control" name="phone_number" id="phone_number" pattern="[0-9]{1,9}" title="Numer telefonu może zawierać maksymalnie 9 cyfr">
             <br>
 
             <button type="submit" class="col-md-3 offset-md-5 btn btn-primary">Zarejestruj</button>

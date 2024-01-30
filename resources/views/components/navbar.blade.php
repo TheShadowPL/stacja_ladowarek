@@ -111,6 +111,13 @@
                 <a class="nav-link {{ (request()->is('register')) ? 'active' : '' }}" href="{{ route('register') }}">Zarejestruj</a>
             </li>
             @else
+            @if(Auth::user()->permission == 'admin')
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('admin.index') }}">Panel Administratora</a>
+                <a class="nav-link" href="{{ route('workers.index') }}">Panel Pracownika</a>
+                <a class="nav-link" href="{{ route('chargers_list') }}">Lista Ładowarek</a>
+            </li>
+            @endif
             @if(Auth::user()->permission == 'worker')
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('workers.index') }}">Panel Pracownika</a>

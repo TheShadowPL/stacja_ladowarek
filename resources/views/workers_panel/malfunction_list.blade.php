@@ -38,6 +38,7 @@
                             <td>{{ $results->description }}</td>
                             <td>{{ $results->created_at }}</td>
                             <td style="display: flex; justify-items: center; flex-direction: column; align-items: center;">
+                                <a href="{{ route('malfunction_list.edit', $results->id) }}">✏️ Edytuj</a>
                                 <form action="{{ route('malfunction_list.delete', $results->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')

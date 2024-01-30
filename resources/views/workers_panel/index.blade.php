@@ -16,7 +16,7 @@
 @else
 <x-notify :type="$notification['type']" :message="$notification['message']" />
 @endif
-
+<body>
 <h2>Panel <span class="attention">pracownika</span></h2>
 <div class="container">
     <a href="{{ route('chargers.index') }}" class="cta-button">🔋 Zarządzaj ładowarkami</a>

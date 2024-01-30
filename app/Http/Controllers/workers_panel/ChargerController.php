@@ -92,10 +92,13 @@ class ChargerController extends Controller
     {
         $charger = Chargers::findOrFail($id);
         $charger->update($request->all());
+        $notification = [
+            'type' => 'success', // success, error, info, warning
+            'message' => 'Ładowarka zaktualizowana pomyślnie!' // wiadomość
+        ];
 
 
-
-        return redirect()->route('chargers.index')->with('success', 'Ładowarka zaktualizowana pomyślnie!');
+        return redirect()->route('chargers.index')->with('notification', $notification);
     }
 
     public function create()

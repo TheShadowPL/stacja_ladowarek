@@ -6,6 +6,7 @@
 /storage/*.key
 /storage/
 /storage/framework/
+/bootstrap/config.php
 /vendor
 .env
 .env.backup

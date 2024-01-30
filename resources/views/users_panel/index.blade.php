@@ -19,7 +19,7 @@
         <div class="left-side">
             <h2><span class="attention">Ładowarki</span> dla twoich potrzeb</h2>
             <p>Dostarczamy nowoczesne i efektywne rozwiązania ładowania dla pojazdów elektrycznych. Znajdź najbliższą stację ładowania już teraz!</p>
-            <a href="{{ __('users_panel/chargers') }}" class="cta-button">Znajdź stację ładowania</a>
+            <a href="{{ route('chargers_list') }}" class="cta-button">Znajdź stację ładowania</a>
         </div>
         <div class="right-side">
             <svg width="642" height="268" viewBox="0 0 642 268" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -45,6 +45,10 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\CheckUser::class,
         ],
 
+        'admin' => [
+            \App\Http\Middleware\CheckAdmin::class,
+        ],
+
 
         'api' => [
             // \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,

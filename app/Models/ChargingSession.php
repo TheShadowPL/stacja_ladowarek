@@ -13,4 +13,10 @@ class ChargingSession extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function charger()
+    {
+        return $this->belongsTo(Chargers::class, 'charger_id');
+    }
+
 }

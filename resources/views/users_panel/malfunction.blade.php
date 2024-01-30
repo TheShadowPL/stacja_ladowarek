@@ -10,7 +10,12 @@
     <title>Zgłoś awarie</title>
 </head>
 
+<x-navbar />
 <body>
+
+@if (session('notification'))
+    <x-notify :type="session('notification')['type']" :message="session('notification')['message']" />
+@endif
     <div class="container">
         @if ($errors->any())
         <div class="alert alert-danger">
