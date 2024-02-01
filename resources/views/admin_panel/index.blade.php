@@ -12,17 +12,19 @@
 </head>
 <x-navbar />
 @if (session('notification'))
-    <x-notify :type="session('notification')['type']" :message="session('notification')['message']" />
+<x-notify :type="session('notification')['type']" :message="session('notification')['message']" />
 @endif
+
 <body>
-<h2>Panel <span class="attention">Administratora</span></h2>
-<div class="container">
-    <a href="{{ route('admin.users') }}" class="cta-button">🔋 Zarządzaj użytkownikami</a>
-    <a href="{{route('admin.users.create')}}" class="cta-button">🗿 Dodaj Użytkownika</a>
-    <a href="{{route('admin.worker_list')}}" class="cta-button">📝 Zarządzaj Pracownikami</a>
-    <a href="{{route('admin.worker.create')}}" class="cta-button">🗿 Dodaj Pracownika</a>
-    <a href="{{route('admin.chargers.create')}}" class="cta-button">🗿 Dodaj Ładowarke</a>
-</div>
+    <h2>Panel <span class="attention">administratora</span></h2>
+    <div class="container">
+        <a href="{{ route('admin.users') }}" class="cta-button">🔋 Zarządzaj użytkownikami</a>
+        <a href="{{route('admin.users.create')}}" class="cta-button">🗿 Dodaj użytkownika</a>
+        <a href="{{route('admin.worker_list')}}" class="cta-button">📝 Zarządzaj pracownikami</a>
+        <a href="{{route('admin.worker.create')}}" class="cta-button">👨‍🔧 Dodaj pracownika</a>
+        <a href="{{route('admin.chargers.create')}}" class="cta-button">🚘 Dodaj ładowarkę</a>
+    </div>
 
 </body>
+
 </html>

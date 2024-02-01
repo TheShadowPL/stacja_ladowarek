@@ -13,31 +13,35 @@
 
 <x-navbar />
 @if (session('notification'))
-    <x-notify :type="session('notification')['type']" :message="session('notification')['message']" />
+<x-notify :type="session('notification')['type']" :message="session('notification')['message']" />
 @endif
+
 <body>
-<div class="container">
-    <h2>Lista <span class="attention">Użytkoników</span></h2>
-    <div class="chargers-list">
-        <div class="tbl-header">
-            <table cellpadding="0" cellspacing="0" border="0">
-                <thead>
-                <tr>
-                    <td>Nazwa Uzytkownika<td>
-                    <td>email<td>
-                    <td>Imie<td>
-                    <td>Nazwisko</td>
-                    <td>Telefon</td>
-                    <td>Data urodzenia</td>
-                    <td>Akcje</td>
-                </tr>
-                </thead>
-            </table>
-        </div>
-        <div class="tbl-content">
-            <table cellpadding="0" cellspacing="0" border="0">
-                <tbody>
-                    @foreach($users as $user)
+    <div class="container">
+        <h2>Lista <span class="attention">użytkoników</span></h2>
+        <div class="chargers-list">
+            <div class="tbl-header">
+                <table cellpadding="0" cellspacing="0" border="0">
+                    <thead>
+                        <tr>
+                            <td>Nazwa Uzytkownika
+                            </td>
+                            <td>E-mail
+                            </td>
+                            <td>Imie
+                            </td>
+                            <td>Nazwisko</td>
+                            <td>Telefon</td>
+                            <td>Data urodzenia</td>
+                            <td>Akcje</td>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            <div class="tbl-content">
+                <table cellpadding="0" cellspacing="0" border="0">
+                    <tbody>
+                        @foreach($users as $user)
                         @if ($user->permission == 'user')
                         <tr>
                             <td>{{$user->username}}</td>
@@ -56,12 +60,13 @@
                             </td>
                         </tr>
                         @endif
-                    @endforeach
-                </tbody>
-            </table>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-</div>
 
 </body>
+
 </html>

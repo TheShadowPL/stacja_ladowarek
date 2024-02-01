@@ -113,9 +113,9 @@
             @else
             @if(Auth::user()->permission == 'admin')
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('admin.index') }}">Panel Administratora</a>
-                <a class="nav-link" href="{{ route('workers.index') }}">Panel Pracownika</a>
-                <a class="nav-link" href="{{ route('chargers_list') }}">Lista Ładowarek</a>
+                <a class="nav-link" href="{{ route('admin.index') }}">Panel administratora</a>
+                <a class="nav-link" href="{{ route('workers.index') }}">Panel pracownika</a>
+                <a class="nav-link" href="{{ route('chargers_list') }}">Lista ładowarek</a>
             </li>
             @endif
             @if(Auth::user()->permission == 'worker')
