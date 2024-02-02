@@ -16,6 +16,9 @@
 
 <body>
 <x-navbar />
+@if (session('notification'))
+    <x-notify :type="session('notification')['type']" :message="session('notification')['message']" />
+@endif
 <section class="filters">
     <form id="filtersForm" action="{{ route('chargers') }}" method="GET">
         <div class="title">

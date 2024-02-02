@@ -120,6 +120,15 @@
                 }
             });
 
+            document.getElementById('battery_capacity').addEventListener('input', chceckBatteryCapacity);
+            function chceckBatteryCapacity() {
+                var batteryCapacity = parseFloat(document.getElementById('battery_capacity').value) || 0;
+                if (batteryCapacity >= 200) {
+                    alert('Pojemność baterii musi być mniejsza od 200kWh.');
+                    this.value = '';
+                }
+            }
+
             document.getElementById('battery_capacity').addEventListener('input', calculateChargingTime);
 
             function calculateChargingTime() {
@@ -133,7 +142,8 @@
 
                     var startTime = new Date(document.getElementById('start_time').value).getTime();
                     var endTimeField = document.getElementById('end_time');
-                    var endTime = startTime + (chargingTime * 60 * 60 * 1000);
+                    var endTime = startTime + (chargingTime * 66 * 60 * 1000);
+                    console.log(endTime);
                     endTimeField.value = new Date(endTime).toISOString().slice(0, -1);
                 } else {
                     document.getElementById('charging_time').value = '';

@@ -10,6 +10,10 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/loading-page/loading.css') }}">
 </head>
 
+@if (session('notification'))
+    <x-notify :type="session('notification')['type']" :message="session('notification')['message']" />
+@endif
+
 <body>
 
     <script>

@@ -19,4 +19,6 @@ class ChargingSession extends Model
         return $this->belongsTo(Chargers::class, 'charger_id');
     }
 
+
+
 }

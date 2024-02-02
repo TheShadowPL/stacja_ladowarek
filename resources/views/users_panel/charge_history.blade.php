@@ -42,7 +42,7 @@
                 <td>{{ $reservation->charger->city }}</td>
                 <td>{{ $reservation->start_time }}</td>
                 <td>{{ $reservation->end_time }}</td>
-                <td>{{ $reservation->cost }}</td>
+                <td>{{ $reservation->charger->price }} zł/kWh</td>
                 <td>@if ($reservation->status == 'reserved') Zarezerwowana @endif</td>
                 <td>
                     <form action="{{ route('charge_history.delete', $reservation->id) }}" method="POST">
