@@ -126,6 +126,9 @@
                 if (batteryCapacity >= 200) {
                     alert('Pojemność baterii musi być mniejsza od 200kWh.');
                     this.value = '';
+                } else if(batteryCapacity < 0){
+                    alert('Jak masz tak dużo prądu do oddania to chętnie przyjmę ;)')
+                    this.value = '';
                 }
             }
 
