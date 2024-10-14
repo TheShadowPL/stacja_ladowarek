@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Services;
 
 use GuzzleHttp\Client;
@@ -17,6 +16,9 @@ class OpenStreetMapService
             'query' => [
                 'format' => 'json',
                 'q' => $address,
+            ],
+            'headers' => [
+                'User-Agent' => 'PlugAndGo/1.0 (krystian.tomczyk813@gmail.com)', 
             ],
         ]);
 

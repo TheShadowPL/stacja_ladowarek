@@ -1,0 +1,30 @@
+networks:
+  plugandgo_network:
+    driver: bridge
+    ipam:
+     config:
+       - subnet: 172.19.0.0/16
+         gateway: 172.19.0.1
+        
+services:
+  database:
+    image: mysql:8.0
+    container_name: PlugAndGo_db
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: PlugAndGo
+    volumes:
+      - ./database.sql:/docker-entrypoint-initdb.d/database.sql
+    networks:
+      plugandgo_network:
+        ipv4_address: 172.19.0.3
+  app:
+    build: .
+    container_name: PlugAndGo
+    ports:
+      - 8000:8000
+    networks:
+      plugandgo_network:
+        ipv4_address: 172.19.0.2

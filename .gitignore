@@ -8,7 +8,6 @@
 /storage/framework/
 /bootstrap/config.php
 /vendor
-.env
 .env.backup
 .env.production
 .phpunit.result.cache
